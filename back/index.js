@@ -1,0 +1,66 @@
+import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
+import path from "path";
+import fs from "fs";
+import cors from "cors";
+import { fileURLToPath } from "url";
+import fileUpload from "express-fileupload";
+import sequelize from "./db.js";
+import rateLimit from "express-rate-limit";
+import router from "./routes/index.js";
+import logger from "./utils/logger.js";
+import { errorMiddlware } from "./middleware/errorMiddleware.js";
+import { seedReferralSources } from "./seeders/referralSourceSeeder.js";
+
+const PORT = process.env.PORT || 5000;
+const app = express();
+
+const staticDir = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "static"
+);
+
+if (!fs.existsSync(staticDir)) {
+  fs.mkdirSync(staticDir);
+}
+
+const accessLogStream = fs.createWriteStream(
+  path.join(path.dirname(fileURLToPath(import.meta.url)), "logs", "access.log"),
+  { flags: "a" }
+);
+
+app.use(express.json());
+app.use(morgan("combined", { stream: accessLogStream }));
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.use(express.static(staticDir));
+
+// Basic rate limiting for public endpoints
+const publicLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 100 });
+app.use("/api/message", publicLimiter);
+app.use("/api/consultation", publicLimiter);
+
+app.use(fileUpload({ limits: { fileSize: 10 * 1024 * 1024 }, abortOnLimit: true }));
+app.use("/api", router);
+app.use(errorMiddlware(logger));
+
+const start = async () => {
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync({ alter: true });
+    
+    // Заполняем начальные данные
+    await seedReferralSources();
+
+    app.listen(PORT, () => {
+      console.log(`**сервер запущен на порту ${PORT}**`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
