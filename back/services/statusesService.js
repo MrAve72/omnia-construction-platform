@@ -12,7 +12,7 @@ class StatusesService {
     }
 
     const formatWord = formatString(name);
-    if (formatWord === "New message") {
+    if (formatString === "New message") {
       throw ApiError.badRequest("new message - base name for new data!");
     }
 

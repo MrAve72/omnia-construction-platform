@@ -6,7 +6,7 @@ import { ROLE } from "../utils/constants.js";
 const router = express.Router();
 const { ADMIN } = ROLE;
 
-router.post("/", checkRoleMiddleware([ADMIN]), selectDateTimeController.add);
+router.post("/", selectDateTimeController.add);
 router.post("/bulk", checkRoleMiddleware([ADMIN]), selectDateTimeController.addBulk);
 router.put(
   "/:id",

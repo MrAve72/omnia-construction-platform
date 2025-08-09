@@ -7,7 +7,6 @@ import cors from "cors";
 import { fileURLToPath } from "url";
 import fileUpload from "express-fileupload";
 import sequelize from "./db.js";
-import rateLimit from "express-rate-limit";
 import router from "./routes/index.js";
 import logger from "./utils/logger.js";
 import { errorMiddlware } from "./middleware/errorMiddleware.js";
@@ -32,18 +31,12 @@ const accessLogStream = fs.createWriteStream(
 
 app.use(express.json());
 app.use(morgan("combined", { stream: accessLogStream }));
-app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static(staticDir));
 
-// Basic rate limiting for public endpoints
-const publicLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 100 });
-app.use("/api/message", publicLimiter);
-app.use("/api/consultation", publicLimiter);
-
-app.use(fileUpload({ limits: { fileSize: 10 * 1024 * 1024 }, abortOnLimit: true }));
+app.use(fileUpload());
 app.use("/api", router);
 app.use(errorMiddlware(logger));
 

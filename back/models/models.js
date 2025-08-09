@@ -78,7 +78,7 @@ UploadPhotos.belongsTo(Consultation, {
 });
 
 ServiceType.hasMany(Consultation, {
-  as: "consultations",
+  as: "сonsultations",
   foreignKey: "service_type_id",
 });
 Consultation.belongsTo(ServiceType, {
@@ -87,8 +87,8 @@ Consultation.belongsTo(ServiceType, {
 });
 
 Consultation.belongsTo(SelectDateTime, {
-  as: "select_date_time",
-  foreignKey: { name: "select_date_time_id", field: "slect_date_time_id" },
+  as: "select_date_time", // Псевдоним для связи
+  foreignKey: "slect_date_time_id", // Внешний ключ
 });
 
 ReferralSource.hasMany(Consultation, {

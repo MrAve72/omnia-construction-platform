@@ -7,15 +7,10 @@ class MessageService {
       throw ApiError.badRequest("Fill in all the details!");
     }
 
-    const emailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const emailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
 
     if (!emailValid.test(email)) {
       throw ApiError.badRequest("Email misspelling!");
-    }
-
-    const usPhoneRegex = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
-    if (!usPhoneRegex.test(phone)) {
-      throw ApiError.badRequest("Please enter a valid US phone number (e.g., 123-456-7890)");
     }
 
     await Message.create({ name, email, phone, message });

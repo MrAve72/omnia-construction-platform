@@ -1,0 +1,43 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Builds
+build/
+dist/
+.cache/
+.temp/
+
+# Environment
+.env
+.env.*
+back/.env
+
+# Logs
+logs/
+*.log
+back/logs/
+
+# Uploaded files (stored on server/storage, not in git)
+back/static/
+
+# Vite build outputs
+front-admin-alex/dist/
+front-site-alex/dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Tests
+coverage/
+
+# Misc
+*.local

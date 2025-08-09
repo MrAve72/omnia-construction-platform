@@ -6,7 +6,7 @@ import { ROLE } from "../utils/constants.js";
 const router = express.Router();
 const { ADMIN } = ROLE;
 
-router.post("/", checkRoleMiddleware([ADMIN]), serviceTypeController.add);
+router.post("/", serviceTypeController.add);
 router.put("/:id", checkRoleMiddleware([ADMIN]), serviceTypeController.update);
 router.get("/", serviceTypeController.getAll);
 router.get("/:id", checkRoleMiddleware([ADMIN]), serviceTypeController.getById);

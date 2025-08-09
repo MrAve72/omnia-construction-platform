@@ -38,11 +38,6 @@ class ConsultationService {
       throw ApiError.badRequest("Email misspelling!");
     }
 
-    const usPhoneRegex = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
-    if (!usPhoneRegex.test(phone)) {
-      throw ApiError.badRequest("Please enter a valid US phone number (e.g., 123-456-7890)");
-    }
-
     const transaction = await sequelize.transaction();
 
     const { id: service_type_id } = await ServiceType.findOne({
@@ -66,14 +61,10 @@ class ConsultationService {
       }
     }
 
-    const slot = await SelectDateTime.findOne({
+    const { limits, id, booked } = await SelectDateTime.findOne({
       where: { date, time },
       raw: true,
     });
-    if (!slot) {
-      throw ApiError.badRequest("Selected time slot not found!");
-    }
-    const { limits, id, booked } = slot;
 
     if (booked >= limits) {
       throw ApiError.badRequest("Limit is full!");
@@ -94,21 +85,6 @@ class ConsultationService {
     // Проверим, что файлы действительно существуют
     if (!files || files.length === 0) {
       throw ApiError.badRequest("No files uploaded!");
-    }
-
-    // Ограничим количество и валидируем тип/размер файлов (до 10MB на файл)
-    if (files.length > 5) {
-      throw ApiError.badRequest("You can upload a maximum of 5 photos.");
-    }
-
-    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
-    for (const file of files) {
-      if (!file.mimetype || !file.mimetype.startsWith("image/")) {
-        throw ApiError.badRequest("Only image files are allowed.");
-      }
-      if (typeof file.size === "number" && file.size > MAX_FILE_SIZE) {
-        throw ApiError.badRequest("Each image must be 10MB or less.");
-      }
     }
 
     const savedPaths = [];
@@ -159,7 +135,7 @@ class ConsultationService {
           zip,
           descriptions,
           service_type_id,
-          select_date_time_id: id,
+          slect_date_time_id: id,
           prefers_call: prefersCallValue,
           referral_source_id,
         },

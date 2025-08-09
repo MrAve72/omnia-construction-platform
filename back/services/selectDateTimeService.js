@@ -140,7 +140,7 @@ class SelectDateTimeService {
     }
 
     const checkConsultation = await Consultation.findOne({
-      where: { select_date_time_id: id },
+      where: { slect_date_time_id: id },
     });
 
     if (checkConsultation) {
