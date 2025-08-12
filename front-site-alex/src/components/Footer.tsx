@@ -11,7 +11,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-1">
               <Link to="/" className="text-sm font-semibold tracking-tight flex items-center gap-1">
-                <span className="text-foreground">Daryna</span>
+            <span className="text-foreground">Omnia</span>
                 <span className="text-foreground/80 font-normal">Construction</span>
               </Link>
             </h3>
@@ -64,7 +64,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail className="h-4 w-4 text-gray-400 mr-2" />
-                <a href="mailto:contact@darynaconstruction.com" className="text-gray-500 hover:text-gray-700 text-xs transition-colors">contact@darynaconstruction.com</a>
+            <a href="mailto:kolbasin.oleksandr@omniaconstructionmn.com" className="text-gray-500 hover:text-gray-700 text-xs transition-colors">kolbasin.oleksandr@omniaconstructionmn.com</a>
               </li>
             </ul>
           </div>
@@ -72,7 +72,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-200 mt-6 pt-3 flex flex-col md:flex-row justify-between items-center">
           <p className="text-xs text-gray-500">
-            &copy; {currentYear} Daryna Construction. All rights reserved.
+         &copy; {currentYear} Omnia Construction. All rights reserved.
           </p>
           <div className="flex items-center space-x-2 mt-2 md:mt-0">
             <Link to="/terms-conditions" className="text-gray-500 hover:text-gray-700 text-xs transition-colors">

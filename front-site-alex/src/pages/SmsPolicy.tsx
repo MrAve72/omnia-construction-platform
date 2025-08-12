@@ -38,9 +38,9 @@ const SmsPolicy = () => {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto reveal">
-              <h1 className="text-2xl md:text-3xl font-bold mb-6">Daryna Construction LLC – SMS Consent Policy</h1>
+             <h1 className="text-2xl md:text-3xl font-bold mb-6">Omnia Construction LLC – SMS Consent Policy</h1>
               <p className="text-gray-600 mb-8">
-                At Daryna Construction LLC, we value clear and respectful communication. By submitting your phone number through our website or during service inquiries, you agree to receive SMS messages in accordance with this policy.
+               At Omnia Construction LLC, we value clear and respectful communication. By submitting your phone number through our website or during service inquiries, you agree to receive SMS messages in accordance with this policy.
               </p>
 
               <div className="space-y-8">
@@ -71,7 +71,7 @@ const SmsPolicy = () => {
                 <div>
                   <h2 className="text-xl font-semibold mb-3">Consent to Receive Messages</h2>
                   <p className="text-gray-600">
-                    By providing your phone number, you expressly consent to receive the above SMS communications. Consent is not a condition for purchasing any services from Daryna Construction LLC.
+                    By providing your phone number, you expressly consent to receive the above SMS communications. Consent is not a condition for purchasing any services from Omnia Construction LLC.
                   </p>
                 </div>
 
@@ -79,7 +79,7 @@ const SmsPolicy = () => {
                   <h2 className="text-xl font-semibold mb-3">Opt-Out Instructions</h2>
                   <ul className="list-disc pl-6 text-gray-600 space-y-2">
                     <li>You may opt out of receiving text messages at any time by replying "STOP SMS" to any SMS from us.</li>
-                    <li>After opting out, you will no longer receive any SMS from Daryna Construction LLC unless you opt in again.</li>
+                    <li>After opting out, you will no longer receive any SMS from Omnia Construction LLC unless you opt in again.</li>
                   </ul>
                 </div>
 
@@ -129,12 +129,12 @@ const SmsPolicy = () => {
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 mt-8">
                   <h2 className="text-xl font-semibold mb-3">Contact Information</h2>
                   <address className="not-italic text-gray-600">
-                    <p className="font-semibold">Daryna Construction LLC</p>
+                    <p className="font-semibold">Omnia Construction LLC</p>
                     <p>1155 Ford Rd</p>
                     <p>Minneapolis, MN, 55426</p>
                     <p>Phone: (612) 849-9633</p>
-                    <p>Email: contact@darynaconstruction.com</p>
-                    <p>Website: www.darynaconstruction.com</p>
+                    <p>Email: kolbasin.oleksandr@omniaconstructionmn.com</p>
+                    <p>Website: www.omniaconstruction.com</p>
                   </address>
                   <p className="text-gray-500 mt-4 text-sm">Last updated: May 2, 2025</p>
                 </div>

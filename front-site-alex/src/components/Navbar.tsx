@@ -103,7 +103,7 @@ const Navbar = () => {
           className="relative flex items-center"
         >
           <div className="text-xl font-semibold tracking-tight flex items-center gap-1">
-            <span className="text-foreground">Daryna</span>
+            <span className="text-foreground">Omnia</span>
             <span className="text-foreground/80 font-normal">Construction</span>
           </div>
           <span className="text-xs text-foreground/60 ml-3 border-l border-gray-300 pl-3">Family Owned & Operated</span>

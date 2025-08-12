@@ -40,7 +40,7 @@ const TermsConditions = () => {
             <div className="max-w-3xl mx-auto reveal">
               <h1 className="text-2xl md:text-3xl font-bold mb-6">Terms and Conditions</h1>
               <p className="text-gray-600 mb-8">
-                Welcome to Daryna Construction LLC ("Company", "we", "our", "us"). These Terms and Conditions ("Terms") govern your use of our services ("Services"). By engaging our Services, you acknowledge that you have read, understood, and agreed to be bound by these Terms. If you do not agree to these Terms, you must refrain from using our Services.
+               Welcome to Omnia Construction LLC ("Company", "we", "our", "us"). These Terms and Conditions ("Terms") govern your use of our services ("Services"). By engaging our Services, you acknowledge that you have read, understood, and agreed to be bound by these Terms. If you do not agree to these Terms, you must refrain from using our Services.
               </p>
 
               {/* Section 1: Services */}
@@ -231,7 +231,7 @@ const TermsConditions = () => {
                 <div className="ml-4 mb-6">
                   <h3 className="text-lg font-medium mb-2">6.2 Indemnification</h3>
                   <p className="text-gray-600 mb-2">
-                    The customer agrees to indemnify, defend, and hold Daryna Construction LLC harmless from all claims, damages, and expenses arising from:
+                    The customer agrees to indemnify, defend, and hold Omnia Construction LLC harmless from all claims, damages, and expenses arising from:
                   </p>
                   <ul className="list-disc ml-6 text-gray-600 space-y-2">
                     <li>The customer's breach of these Terms</li>
@@ -322,7 +322,7 @@ const TermsConditions = () => {
                 
                 <h2 className="text-xl font-semibold mb-4">12. Entire Agreement</h2>
                 <p className="text-gray-600 ml-4">
-                  These Terms represent the entire agreement between Daryna Construction LLC and the customer, superseding all prior communications or agreements.
+                  These Terms represent the entire agreement between Omnia Construction LLC and the customer, superseding all prior communications or agreements.
                 </p>
               </div>
 
@@ -335,11 +335,11 @@ const TermsConditions = () => {
                 
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 mt-4">
                   <address className="not-italic text-gray-600">
-                    <p className="font-semibold">Daryna Construction LLC</p>
+                    <p className="font-semibold">Omnia Construction LLC</p>
                     <p>1155 Ford Rd</p>
                     <p>Minneapolis, MN, 55426</p>
                     <p>Phone: 612-849-9633</p>
-                    <p>Email: contact@darynaconstruction.com</p>
+                    <p>Email: kolbasin.oleksandr@omniaconstructionmn.com</p>
                   </address>
                   <p className="text-gray-500 mt-4 text-sm">Last updated: May, 2025</p>
                 </div>

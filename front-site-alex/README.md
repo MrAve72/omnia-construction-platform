@@ -1,5 +1,5 @@
 
-# Daryna Construction Website
+# Omnia Construction Website
 
 ## What technologies are used for this project?
 

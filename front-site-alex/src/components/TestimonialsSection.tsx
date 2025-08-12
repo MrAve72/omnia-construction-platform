@@ -6,19 +6,19 @@ const realReviews = [
   {
     name: "Karen R.",
     date: "2025-04-15",
-    comment: "Serhii and his team were amazing. Very professional, attentive to detail and very friendly. I had a wall and doorway removed to open up my main floor. It looks beautiful. I will definitely be hiring them again for other projects.",
+    comment: "Alex and Serhii were amazing. Very professional, attentive to detail and very friendly. I had a wall and doorway removed to open up my main floor. It looks beautiful. I will definitely be hiring them again for other projects.",
     rating: 5
   },
   {
     name: "Claire O.",
     date: "2025-03-20",
-    comment: "Serhii did an excellent job with our flooring project. He was on time, kept us informed, did quality work, cleaned up thoroughly—and was friendly throughout. Would definitely hire again.",
+    comment: "Alex and Serhii did an excellent job with our flooring project. They were on time, kept us informed, did quality work, cleaned up thoroughly—and were friendly throughout. Would definitely hire again.",
     rating: 5
   },
   {
     name: "Monica L.",
     date: "2025-02-12",
-    comment: "Serhii was great to work with. I had a list of small tasks to get done (wall repair, shelving installation, and other small tasks) and the work was done with care and attention to detail. I will definitely hire him again!",
+    comment: "Alex and Serhii were great to work with. I had a list of small tasks to get done (wall repair, shelving installation, and other small tasks) and the work was done with care and attention to detail. I will definitely hire them again!",
     rating: 5
   },
   {
@@ -42,31 +42,31 @@ const realReviews = [
   {
     name: "Sarah P.",
     date: "2024-10-05",
-    comment: "I hired Daryna Construction for several small projects around my home. Serhii was very thorough and his work is of high quality. He's now my go-to handyman for any future projects.",
+    comment: "I hired Omnia Construction for several small projects around my home. Serhii was very thorough and his work is of high quality. He's now my go-to handyman for any future projects.",
     rating: 5
   },
   {
     name: "Michael J.",
     date: "2024-09-14",
-    comment: "Great experience working with Serhii. He built a custom storage solution for our garage and the results were perfect. Clean work, reasonable pricing, and excellent communication.",
+    comment: "Great experience working with Alex and Serhii. They built a custom storage solution for our garage and the results were perfect. Clean work, reasonable pricing, and excellent communication.",
     rating: 5
   },
   {
     name: "Allison W.",
     date: "2024-08-28",
-    comment: "Daryna Construction installed our custom shelving and did minor wall repairs. The work was completed exactly as promised, and the finished product looks fantastic. Very pleased!",
+    comment: "Omnia Construction installed our custom shelving and did minor wall repairs. The work was completed exactly as promised, and the finished product looks fantastic. Very pleased!",
     rating: 5
   },
   {
     name: "Thomas G.",
     date: "2024-07-19",
-    comment: "Serhii installed new doors throughout our home. His craftsmanship is outstanding and he paid close attention to every detail. The doors look and function perfectly.",
+    comment: "Alex and Serhii installed new doors throughout our home. Their craftsmanship is outstanding and they paid close attention to every detail. The doors look and function perfectly.",
     rating: 5
   },
   {
     name: "Emily S.",
     date: "2024-06-22",
-    comment: "We hired Daryna Construction for tile installation in our bathroom. Serhii was professional, meticulous, and the results were beautiful. We've already recommended him to friends.",
+    comment: "We hired Omnia Construction for tile installation in our bathroom. Alex and Serhii were professional, meticulous, and the results were beautiful. We've already recommended them to friends.",
     rating: 5
   },
   {
@@ -121,7 +121,7 @@ const TestimonialsSection = () => {
   useEffect(() => {
     // Создаем и добавляем скрипт Thumbtack
     const script = document.createElement('script');
-    script.src = "https://www.thumbtack.com/profile/widgets/scripts/?service_pk=506141785921150982&widget_id=review&type=star";
+    script.src = "https://www.thumbtack.com/profile/widgets/scripts/?service_pk=512268969764429832&widget_id=review&type=star";
     script.async = true;
     
     // Добавляем скрипт только если его еще нет
@@ -172,14 +172,14 @@ const TestimonialsSection = () => {
                         />
                       ))}
                     </div>
-                    <span className="text-gray-700 font-medium">32 reviews</span>
+                   <span className="text-gray-700 font-medium">15 reviews</span>
                   </div>
                 </div>
-                <h3 className="text-lg font-medium text-gray-800 ml-1">Serhii "Daryna Construction LLC"</h3>
+                <h3 className="text-lg font-medium text-gray-800 ml-1">Alex Omnia Construction LLC</h3>
               </div>
               
               <a 
-                href="https://www.thumbtack.com/mn/minneapolis/handyman/serhii-daryna-construction-llc/service/506141785921150982" 
+                href="https://www.thumbtack.com/mn/minneapolis/general-contractors/alex-omnia-construction-llc/service/512268969764429832" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-full transition-colors"
@@ -263,8 +263,8 @@ const TestimonialsSection = () => {
           <div className="hidden">
             <div className="widget" id="tt-review-widget-star">
               <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/logos/thumbtack/wordmark.svg" alt="Thumbtack" className="tt-logo" />
-              <a target="_blank" href="https://www.thumbtack.com/mn/minneapolis/handyman/serhii-daryna-construction-llc/service/506141785921150982">
-                <div>Serhii "Daryna Construction LLC"</div>
+              <a target="_blank" href="https://www.thumbtack.com/mn/minneapolis/general-contractors/alex-omnia-construction-llc/service/512268969764429832">
+                <div>Alex Omnia Construction LLC</div>
               </a>
               <div id="tt-dynamic">
                 <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="Star" />
@@ -272,14 +272,14 @@ const TestimonialsSection = () => {
                 <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="Star" />
                 <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="Star" />
                 <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="Star" />
-                <span>32 reviews</span>
+                <span>15 reviews</span>
               </div>
             </div>
           </div>
           
           <div className="text-center">
             <a 
-              href="https://www.thumbtack.com/mn/minneapolis/handyman/serhii-daryna-construction-llc/service/506141785921150982" 
+              href="https://www.thumbtack.com/mn/minneapolis/general-contractors/alex-omnia-construction-llc/service/512268969764429832" 
               target="_blank"
               rel="noopener noreferrer" 
               className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium rounded-full transition-colors"

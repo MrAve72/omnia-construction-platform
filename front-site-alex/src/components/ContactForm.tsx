@@ -90,7 +90,7 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <h3 className="text-base font-semibold mb-1">Email</h3>
-                    <p className="text-gray-600">contact@darynaconstruction.com</p>
+                    <p className="text-gray-600">kolbasin.oleksandr@omniaconstructionmn.com</p>
                   </div>
                 </div>
 

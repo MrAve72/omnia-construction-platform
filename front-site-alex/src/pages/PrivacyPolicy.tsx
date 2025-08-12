@@ -40,7 +40,7 @@ const PrivacyPolicy = () => {
             <div className="max-w-3xl mx-auto reveal">
               <h1 className="text-2xl md:text-3xl font-bold mb-6">Privacy Policy</h1>
               <p className="text-gray-600 mb-8">
-                At Daryna Construction LLC, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you visit our website, DarynaConstruction.com, or use our services. By using our website and services, you agree to the terms outlined in this policy.
+               At Omnia Construction LLC, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you visit our website, OmniaConstruction.com, or use our services. By using our website and services, you agree to the terms outlined in this policy.
               </p>
 
               {/* Section 1: Information We Collect */}
@@ -104,7 +104,7 @@ const PrivacyPolicy = () => {
               <div className="mb-8">
                 <h2 className="text-xl font-semibold mb-4">4. Cookies and Tracking Technologies</h2>
                 <p className="text-gray-600 ml-4 mb-4">
-                  Daryna Construction LLC uses cookies and similar technologies to enhance your experience. These include:
+                 Omnia Construction LLC uses cookies and similar technologies to enhance your experience. These include:
                 </p>
                 
                 <ul className="list-disc ml-8 text-gray-600 space-y-2">
@@ -141,7 +141,7 @@ const PrivacyPolicy = () => {
                 </ul>
                 
                 <p className="text-gray-600 ml-4 mt-4">
-                  To exercise these rights, please contact us via email at contact@darynaconstruction.com.
+                  To exercise these rights, please contact us via email at kolbasin.oleksandr@omniaconstructionmn.com.
                 </p>
               </div>
 
@@ -149,7 +149,7 @@ const PrivacyPolicy = () => {
               <div className="mb-8">
                 <h2 className="text-xl font-semibold mb-4">7. Third-Party Links</h2>
                 <p className="text-gray-600 ml-4">
-                  Daryna Construction LLC may contain links to third-party websites. We are not responsible for the privacy practices or content of those websites. Please review their privacy policies before providing any personal information.
+                 Omnia Construction LLC may contain links to third-party websites. We are not responsible for the privacy practices or content of those websites. Please review their privacy policies before providing any personal information.
                 </p>
               </div>
 
@@ -178,16 +178,16 @@ const PrivacyPolicy = () => {
                 
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 mt-4">
                   <address className="not-italic text-gray-600">
-                    <p className="font-semibold">Daryna Construction LLC</p>
+                   <p className="font-semibold">Omnia Construction LLC</p>
                     <p>1155 Ford Rd</p>
                     <p>Minneapolis, MN, 55426</p>
                     <p>Phone: 612-849-9633</p>
-                    <p>Email: contact@darynaconstruction.com</p>
+                    <p>Email: kolbasin.oleksandr@omniaconstructionmn.com</p>
                   </address>
                 </div>
                 
                 <p className="text-gray-600 mt-6">
-                  Your privacy is important to us. Thank you for trusting Daryna Construction LLC with your construction and remodeling service needs!
+                 Your privacy is important to us. Thank you for trusting Omnia Construction LLC with your construction and remodeling service needs!
                 </p>
                 
                 <p className="text-gray-500 mt-4 text-sm">
