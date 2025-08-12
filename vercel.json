@@ -1,0 +1,16 @@
+{
+  "builds": [
+    {
+      "src": "front-site-alex/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "installCommand": "cd front-site-alex && npm install",
+  "buildCommand": "cd front-site-alex && npm run build",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+
+
