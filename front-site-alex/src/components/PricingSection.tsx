@@ -111,15 +111,15 @@ const PricingSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <PricingCard
-            title="Custom Projects"
+            title="Remodeling Projects"
             priceRange="Custom Quote"
-            description="Tailored to your specific requirements"
+            description="Tailored remodeling plans built around your goals"
             features={[
-              "Multi-room renovations",
-              "Custom designs",
-              "Premium finishes",
-              "Complex installations",
-              "Commercial spaces"
+              "Whole-home transformations",
+              "Kitchen & bathroom remodels",
+              "Basement finishing",
+              "Custom millwork and finishes",
+              "Structural updates and additions"
             ]}
             delay={100}
           />
