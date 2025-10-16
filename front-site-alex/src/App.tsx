@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import Booking from "./pages/Booking";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 import SmsPolicy from "./pages/SmsPolicy";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
           <Route path="/sms-consent-policy" element={<SmsPolicy />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-conditions" element={<TermsConditions />} />

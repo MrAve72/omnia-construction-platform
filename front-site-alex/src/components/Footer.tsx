@@ -64,7 +64,13 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail className="h-4 w-4 text-gray-400 mr-2" />
-            <a href="mailto:kolbasin.oleksandr@omniaconstructionmn.com" className="text-gray-500 hover:text-gray-700 text-xs transition-colors">kolbasin.oleksandr@omniaconstructionmn.com</a>
+                <a href="mailto:kolbasin.oleksandr@omniaconstructionmn.com" className="text-gray-500 hover:text-gray-700 text-xs transition-colors">kolbasin.oleksandr@omniaconstructionmn.com</a>
+              </li>
+              <li className="flex items-center">
+                <span className="inline-flex items-center h-4 w-4 justify-center mr-2">
+                  <span className="text-[10px] font-semibold text-gray-400">#</span>
+                </span>
+                <span className="text-gray-500 text-xs">License: CR807108</span>
               </li>
             </ul>
           </div>
