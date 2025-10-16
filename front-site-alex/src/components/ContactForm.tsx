@@ -11,6 +11,8 @@ const ContactForm = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const emailRequired = formData.phone.trim().length === 0;
+  const phoneRequired = formData.email.trim().length === 0;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -21,8 +23,35 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const trimmedData = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      message: formData.message.trim(),
+    };
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const usPhoneRegex = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
-    if (!usPhoneRegex.test(formData.phone)) {
+
+    if (!trimmedData.email && !trimmedData.phone) {
+      toast({
+        title: "Contact method required",
+        description: "Please provide either an email or a phone number so we can reach you.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (trimmedData.email && !emailRegex.test(trimmedData.email)) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address (e.g., name@example.com).",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (trimmedData.phone && !usPhoneRegex.test(trimmedData.phone)) {
       toast({
         title: "Invalid phone number",
         description: "Please enter a valid US phone number (e.g., 123-456-7890)",
@@ -38,7 +67,7 @@ const ContactForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(trimmedData),
       });
 
       if (!response.ok) {
@@ -157,7 +186,7 @@ const ContactForm = () => {
 
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                      Email
+                      Email <span className="text-xs text-gray-400">(optional if phone provided)</span>
                     </label>
                     <input
                       type="email"
@@ -165,15 +194,15 @@ const ContactForm = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      required
+                      required={emailRequired}
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition-all"
-                      placeholder="Your email"
+                      placeholder="your@email.com"
                     />
                   </div>
 
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                      Phone
+                      Phone <span className="text-xs text-gray-400">(optional if email provided)</span>
                     </label>
                     <input
                       type="tel"
@@ -181,13 +210,13 @@ const ContactForm = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      required
+                      required={phoneRequired}
                       pattern="^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$"
                       title="Enter a valid US phone number (e.g., 123-456-7890)"
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition-all"
                       placeholder="123-456-7890"
                     />
-
+                    <p className="mt-2 text-xs text-gray-500">Provide at least one way for us to contact you.</p>
                   </div>
 
                   <div>

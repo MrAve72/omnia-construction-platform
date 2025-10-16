@@ -13,6 +13,9 @@ const sanitize = (value: string) =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 
+const renderValue = (value: string) =>
+  value ? sanitize(value) : '<span style="color:#6b7280;">Not provided</span>';
+
 const parseBody = (request: VercelRequest) => {
   if (!request.body) return null;
   if (typeof request.body === "string") {
@@ -30,8 +33,8 @@ const createEmailHtml = (name: string, email: string, phone: string, message: st
   <div style="font-family: Arial, sans-serif; color: #111827; line-height: 1.6;">
     <h2 style="margin-bottom: 16px;">New Contact Form Submission</h2>
     <p style="margin: 8px 0;"><strong>Name:</strong> ${sanitize(name)}</p>
-    <p style="margin: 8px 0;"><strong>Email:</strong> ${sanitize(email)}</p>
-    <p style="margin: 8px 0;"><strong>Phone:</strong> ${sanitize(phone)}</p>
+    <p style="margin: 8px 0;"><strong>Email:</strong> ${renderValue(email)}</p>
+    <p style="margin: 8px 0;"><strong>Phone:</strong> ${renderValue(phone)}</p>
     <p style="margin: 16px 0;"><strong>Message:</strong></p>
     <p style="background: #f9fafb; padding: 12px; border-radius: 8px; border: 1px solid #e5e7eb;">${sanitize(
       message
@@ -51,18 +54,22 @@ export default async function handler(request: VercelRequest, response: VercelRe
   const phone = typeof data?.phone === "string" ? data.phone.trim() : "";
   const message = typeof data?.message === "string" ? data.message.trim() : "";
 
-  if (!name || !email || !phone || !message) {
-    return response.status(400).json({ error: "All fields are required." });
+  if (!name || !message) {
+    return response.status(400).json({ error: "Name and message are required." });
+  }
+
+  if (!email && !phone) {
+    return response.status(400).json({ error: "Please provide at least an email or a phone number." });
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
 
-  if (!emailRegex.test(email)) {
+  if (email && !emailRegex.test(email)) {
     return response.status(400).json({ error: "Please provide a valid email address." });
   }
 
-  if (!phoneRegex.test(phone)) {
+  if (phone && !phoneRegex.test(phone)) {
     return response.status(400).json({ error: "Please provide a valid US phone number." });
   }
 
@@ -80,10 +87,17 @@ export default async function handler(request: VercelRequest, response: VercelRe
     await resend.emails.send({
       from: process.env.CONTACT_FROM_EMAIL ?? "Omnia Construction <onboarding@resend.dev>",
       to: recipientEmail,
-      reply_to: email,
+      ...(email ? { reply_to: email } : {}),
       subject: "New message from Omnia Construction contact form",
       html: createEmailHtml(name, email, phone, message),
-      text: `New contact form submission\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`,
+      text: `New contact form submission
+
+Name: ${name}
+Email: ${email || "Not provided"}
+Phone: ${phone || "Not provided"}
+
+Message:
+${message}`,
     });
 
     return response.status(200).json({ success: true });
