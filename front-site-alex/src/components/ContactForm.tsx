@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
-import { useSendMessage } from "@/hooks/useSendMessage";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -19,8 +18,6 @@ const ContactForm = () => {
   };
 
 
-  const { createMessage } = useSendMessage()
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -35,23 +32,41 @@ const ContactForm = () => {
     }
 
     setIsSubmitting(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    const resp = await createMessage(formData);
-    console.log(resp);
+      if (!response.ok) {
+        const error = await response.json().catch(() => null);
+        throw new Error(error?.error ?? "Failed to send message. Please try again.");
+      }
 
-    setTimeout(() => {
-      setIsSubmitting(false);
       setFormData({
         name: "",
         email: "",
         phone: "",
         message: "",
       });
+
       toast({
         title: "Message sent successfully",
         description: "We'll get back to you as soon as possible.",
       });
-    }, 1000);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Unable to send message right now.";
+      toast({
+        title: "Something went wrong",
+        description: message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
 
