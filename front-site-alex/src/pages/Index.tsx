@@ -50,18 +50,7 @@ const Index = () => {
         <section className="pt-16 bg-gray-50">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto reveal">
-              <div className="flex items-center justify-center mb-8">
-                <div className="bg-indigo-100 p-3 rounded-full mr-4">
-                  <PhoneOff className="h-6 w-6 text-indigo-600" />
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold">Book Without Phone Calls</h2>
-              </div>
-              
-              <p className="text-gray-600 text-center mb-10">
-                We understand that not everyone wants to make phone calls. Our streamlined online booking system allows you to schedule services entirely online without ever picking up the phone.
-              </p>
-              
-              <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
                 <a
                   href="https://www.bbb.org/us/mn/minneapolis/profile/residential-general-contractor/omnia-construction-llc-0704-1000076607/#sealclick"
                   target="_blank"
@@ -84,6 +73,17 @@ const Index = () => {
                   </p>
                 </div>
               </div>
+
+              <div className="flex items-center justify-center mb-8">
+                <div className="bg-indigo-100 p-3 rounded-full mr-4">
+                  <PhoneOff className="h-6 w-6 text-indigo-600" />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold">Book Without Phone Calls</h2>
+              </div>
+              
+              <p className="text-gray-600 text-center mb-10">
+                We understand that not everyone wants to make phone calls. Our streamlined online booking system allows you to schedule services entirely online without ever picking up the phone.
+              </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                 <div className="bg-white p-6 rounded-xl shadow-subtle text-center">
