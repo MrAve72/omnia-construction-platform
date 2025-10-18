@@ -49,6 +49,29 @@ const Hero = () => {
               <Link to="/booking">Book a Consultation</Link>
             </Button>
           </div>
+
+          <div
+            className="mt-8 flex flex-wrap items-center justify-center gap-6 animate-fade-in"
+            style={{ animationDelay: "0.25s" }}
+          >
+            <a
+              href="https://www.bbb.org/us/mn/minneapolis/profile/residential-general-contractor/omnia-construction-llc-0704-1000076607/#sealclick"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="inline-flex items-center rounded-lg bg-white/10 px-3 py-2 backdrop-blur-sm hover:bg-white/20 transition-colors"
+            >
+              <img
+                src="https://seal-minnesota.bbb.org/seals/blue-seal-120-61-bbb-1000076607.png"
+                alt="Omnia Construction LLC BBB Business Review"
+                loading="lazy"
+                className="h-12 w-auto"
+              />
+            </a>
+            <div className="text-left text-white/80 text-sm max-w-xs">
+              <p className="font-semibold text-white tracking-wide uppercase text-xs">Trusted & Accredited</p>
+              <p>Better Business Bureau Accredited • MN Residential Remodeler License CR807108</p>
+            </div>
+          </div>
         </div>
       </div>
 

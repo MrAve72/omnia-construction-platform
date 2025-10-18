@@ -21,6 +21,21 @@ const Footer = () => {
                   Transforming spaces with precision craftsmanship and timeless design.
                 </p>
               </li>
+              <li className="pt-1">
+                <a
+                  href="https://www.bbb.org/us/mn/minneapolis/profile/residential-general-contractor/omnia-construction-llc-0704-1000076607/#sealclick"
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="inline-flex items-center rounded border border-gray-200 bg-white p-1 shadow-sm hover:shadow transition-shadow"
+                >
+                  <img
+                    src="https://seal-minnesota.bbb.org/seals/blue-seal-120-61-bbb-1000076607.png"
+                    alt="Omnia Construction LLC BBB Business Review"
+                    loading="lazy"
+                    className="h-10 w-auto"
+                  />
+                </a>
+              </li>
             </ul>
           </div>
 
