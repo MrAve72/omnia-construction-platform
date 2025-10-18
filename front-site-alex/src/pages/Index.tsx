@@ -61,6 +61,30 @@ const Index = () => {
                 We understand that not everyone wants to make phone calls. Our streamlined online booking system allows you to schedule services entirely online without ever picking up the phone.
               </p>
               
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
+                <a
+                  href="https://www.bbb.org/us/mn/minneapolis/profile/residential-general-contractor/omnia-construction-llc-0704-1000076607/#sealclick"
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="inline-flex items-center rounded-lg border border-gray-200 bg-white px-3 py-2 shadow-sm hover:shadow transition-shadow"
+                >
+                  <img
+                    src="https://seal-minnesota.bbb.org/seals/blue-seal-120-61-bbb-1000076607.png"
+                    alt="Omnia Construction LLC BBB Business Review"
+                    loading="lazy"
+                    className="h-14 w-auto md:h-16"
+                  />
+                </a>
+                <div className="text-center md:text-left text-gray-600 text-sm max-w-md">
+                  <p className="uppercase tracking-wide text-xs font-semibold text-indigo-600">
+                    Trusted & Accredited
+                  </p>
+                  <p>
+                    Better Business Bureau Accredited • MN Residential Remodeler License CR807108
+                  </p>
+                </div>
+              </div>
+              
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                 <div className="bg-white p-6 rounded-xl shadow-subtle text-center">
                   <div className="bg-blue-50 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
