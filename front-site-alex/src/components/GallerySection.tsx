@@ -19,24 +19,24 @@ const beforeAfterProjects: BeforeAfterProject[] = [
     id: 1,
     title: "Bathroom Remodel",
     category: "Home Improvement",
-    beforeImage: "/portfolio/Bathroom remodel/3.jpg",
-    afterImage: "/portfolio/Bathroom remodel/1.jpg",
+    beforeImage: "/gallery/Bathroom remodel/3.jpg",
+    afterImage: "/gallery/Bathroom remodel/1.jpg",
     description: "Complete transformation from an outdated bathroom to a modern minimalist style with new fixtures and finishes."
   },
   {
     id: 2,
     title: "Engineering Laminate Flooring",
     category: "Flooring",
-    beforeImage: "/portfolio/Engeneering laminate/2.jpg",
-    afterImage: "/portfolio/Engeneering laminate/1.jpg",
+    beforeImage: "/gallery/Engeneering laminate/2.jpg",
+    afterImage: "/gallery/Engeneering laminate/1.jpg",
     description: "Installation of high-quality engineered laminate flooring for durability and beautiful aesthetics."
   },
   {
     id: 3,
     title: "Wall Construction",
     category: "Home Improvement",
-    beforeImage: "/portfolio/Wall build/5.jpg",
-    afterImage: "/portfolio/Wall build/1.jpg",
+    beforeImage: "/gallery/Wall build/5.jpg",
+    afterImage: "/gallery/Wall build/1.jpg",
     description: "Professional wall building services to modify and enhance interior spaces."
   }
 ];
