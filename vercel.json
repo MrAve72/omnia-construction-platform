@@ -1,23 +1,7 @@
 {
-  "builds": [
-    {
-      "src": "front-site-alex/package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
-    },
-    {
-      "src": "front-site-alex/api/contact.ts",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/contact",
-      "dest": "front-site-alex/api/contact.ts"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+  "buildCommand": "cd front-site-alex && npm run build",
+  "outputDirectory": "front-site-alex/dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
