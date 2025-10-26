@@ -1,4 +1,5 @@
 {
+  "installCommand": "cd front-site-alex && npm install",
   "buildCommand": "cd front-site-alex && npm run build",
   "outputDirectory": "front-site-alex/dist",
   "rewrites": [
