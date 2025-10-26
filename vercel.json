@@ -14,7 +14,9 @@
     { "src": "/api/contact", "dest": "front-site-alex/api/contact.ts" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
-
 
