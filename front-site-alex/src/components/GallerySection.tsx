@@ -48,6 +48,7 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }: { beforeImage: string; a
   const sliderContainerRef = useRef<HTMLDivElement>(null);
   const beforeImageRef = useRef<HTMLImageElement>(null);
   const afterImageRef = useRef<HTMLImageElement>(null);
+  const sliderHandleRef = useRef<HTMLDivElement>(null);
 
   // Функция для отслеживания загрузки изображений
   useEffect(() => {
@@ -104,26 +105,52 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }: { beforeImage: string; a
 
   const handleTouchStart = () => {
     if (!sliderContainerRef.current) return;
-    
+
     const handleTouchMove = (e: TouchEvent) => {
       e.preventDefault();
       const touch = e.touches[0];
       const rect = sliderContainerRef.current!.getBoundingClientRect();
       const x = touch.clientX - rect.left;
       const percent = (x / rect.width) * 100;
-      
+
       if (percent < 0) setSliderPosition(0);
       else if (percent > 100) setSliderPosition(100);
       else setSliderPosition(percent);
     };
-    
+
     const handleTouchEnd = () => {
       document.removeEventListener('touchmove', handleTouchMove);
       document.removeEventListener('touchend', handleTouchEnd);
     };
-    
+
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
     document.addEventListener('touchend', handleTouchEnd);
+  };
+
+  // Keyboard navigation support for accessibility
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const step = e.shiftKey ? 10 : 5; // Larger steps with Shift key
+
+    switch (e.key) {
+      case 'ArrowLeft':
+        e.preventDefault();
+        setSliderPosition((prev) => Math.max(0, prev - step));
+        break;
+      case 'ArrowRight':
+        e.preventDefault();
+        setSliderPosition((prev) => Math.min(100, prev + step));
+        break;
+      case 'Home':
+        e.preventDefault();
+        setSliderPosition(0);
+        break;
+      case 'End':
+        e.preventDefault();
+        setSliderPosition(100);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -137,12 +164,20 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }: { beforeImage: string; a
         </div>
       )}
       
-      <div 
+      <div
         ref={sliderContainerRef}
         className="relative h-96 md:h-[32rem] overflow-hidden rounded-xl bg-gray-100 flex items-center justify-center"
         style={{ cursor: 'ew-resize', opacity: imagesLoaded ? 1 : 0.3 }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        role="slider"
+        aria-label="Before and after comparison slider"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(sliderPosition)}
+        aria-valuetext={`${Math.round(sliderPosition)}% after image visible`}
       >
         {/* Изображение "до" (видно полностью) */}
         <div className="absolute inset-0 border border-gray-200 flex items-center justify-center bg-white">
@@ -194,8 +229,9 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }: { beforeImage: string; a
       </div>
       
       {/* Инструкции для пользователя */}
-      <div className="text-center text-gray-500 text-xs mt-2">
-        Drag the slider left or right to compare before and after
+      <div className="text-center text-gray-600 text-xs mt-2">
+        <span className="sr-only">Use arrow keys, or drag the slider to compare before and after images. Press Home for before, End for after.</span>
+        <span aria-hidden="true">Drag the slider or use arrow keys to compare before and after</span>
       </div>
     </div>
   );

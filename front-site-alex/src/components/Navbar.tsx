@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,9 @@ import { cn } from "@/lib/utils";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [bodyScroll, setBodyScroll] = useState(false)
+  const [bodyScroll, setBodyScroll] = useState(false);
+  const mobileMenuRef = useRef<HTMLElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -88,6 +90,44 @@ const Navbar = () => {
     }
   }, [bodyScroll])
 
+  // Focus trapping in mobile menu for accessibility
+  useEffect(() => {
+    if (isMobileMenuOpen && mobileMenuRef.current) {
+      // Get all focusable elements within the mobile menu
+      const focusableElements = mobileMenuRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      // Focus the close button when menu opens
+      if (closeButtonRef.current) {
+        closeButtonRef.current.focus();
+      }
+
+      const handleTabKey = (e: KeyboardEvent) => {
+        if (e.key === 'Tab') {
+          if (e.shiftKey && document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          } else if (!e.shiftKey && document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+
+        // Close menu on Escape key
+        if (e.key === 'Escape') {
+          setIsMobileMenuOpen(false);
+          setBodyScroll(false);
+        }
+      };
+
+      document.addEventListener('keydown', handleTabKey);
+      return () => document.removeEventListener('keydown', handleTabKey);
+    }
+  }, [isMobileMenuOpen])
+
   return (
     <header
       className={cn(
@@ -151,21 +191,32 @@ const Navbar = () => {
 
         {/* Mobile Nav Toggle */}
         <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          ref={isMobileMenuOpen ? closeButtonRef : null}
+          onClick={() => {
+            setIsMobileMenuOpen(!isMobileMenuOpen);
+            bodyScrollToggle();
+          }}
           className="md:hidden"
-          aria-label="Toggle menu"
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-navigation"
         >
           {isMobileMenuOpen ? (
-            <X className="h-6 w-6 text-foreground" onClick={bodyScrollToggle} />
+            <X className="h-6 w-6 text-foreground" />
           ) : (
-            <Menu className="h-6 w-6 text-foreground" onClick={bodyScrollToggle} />
+            <Menu className="h-6 w-6 text-foreground" />
           )}
         </button>
 
         {/* Mobile Nav */}
         {isMobileMenuOpen && (
           <div className="md:hidden fixed inset-0 top-16 bg-background/95 backdrop-blur-sm z-40 animate-fade-in">
-            <nav className="flex flex-col items-center justify-center h-full space-y-8 p-6">
+            <nav
+              ref={mobileMenuRef}
+              id="mobile-navigation"
+              className="flex flex-col items-center justify-center h-full space-y-8 p-6"
+              aria-label="Mobile navigation"
+            >
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
