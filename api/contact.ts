@@ -1,6 +1,25 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { Resend } from "resend";
 import { v4 as uuidv4 } from "uuid";
+import * as Sentry from "@sentry/node";
+import { Redis } from "@upstash/redis";
+
+// Initialize Sentry
+if (process.env.SENTRY_DSN) {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    environment: process.env.VERCEL_ENV || "development",
+    tracesSampleRate: 1.0,
+  });
+}
+
+// Initialize Upstash Redis for rate limiting
+const redis = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
+  ? new Redis({
+      url: process.env.UPSTASH_REDIS_REST_URL,
+      token: process.env.UPSTASH_REDIS_REST_TOKEN,
+    })
+  : null;
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL;
@@ -47,6 +66,13 @@ export default async function handler(request: VercelRequest, response: VercelRe
   // Generate correlation ID for request tracing
   const requestId = uuidv4();
 
+  // Set Sentry context
+  Sentry.setContext("request", {
+    requestId,
+    method: request.method,
+    headers: request.headers,
+  });
+
   // Set security headers
   response.setHeader("X-Content-Type-Options", "nosniff");
   response.setHeader("X-Frame-Options", "DENY");
@@ -61,6 +87,35 @@ export default async function handler(request: VercelRequest, response: VercelRe
     response.setHeader("Allow", "POST");
     console.log({ requestId, event: "method_not_allowed", method: request.method });
     return response.status(405).json({ error: "Method Not Allowed" });
+  }
+
+  // Rate limiting check
+  if (redis) {
+    const ip = (request.headers["x-forwarded-for"] as string)?.split(",")[0] ||
+                request.headers["x-real-ip"] as string ||
+                "unknown";
+    const rateLimitKey = `rate_limit:contact:${ip}`;
+
+    try {
+      const requests = await redis.incr(rateLimitKey);
+
+      if (requests === 1) {
+        // Set expiry of 1 hour on first request
+        await redis.expire(rateLimitKey, 3600);
+      }
+
+      if (requests > 10) {
+        console.log({ requestId, event: "rate_limit_exceeded", ip, requests });
+        return response.status(429).json({
+          error: "Too many requests. Please try again later."
+        });
+      }
+
+      console.log({ requestId, event: "rate_limit_check", ip, requests });
+    } catch (error) {
+      console.error({ requestId, event: "rate_limit_error", error });
+      // Continue without rate limiting if Redis fails
+    }
   }
 
   const data = parseBody(request);
@@ -106,10 +161,9 @@ export default async function handler(request: VercelRequest, response: VercelRe
 
   console.log({ requestId, event: "validation_passed", hasEmail: !!email, hasPhone: !!phone });
 
-  try {
-    console.log({ requestId, event: "sending_email", recipient: recipientEmail });
-
-    await resend.emails.send({
+  // Email sending with retry logic
+  const sendEmailWithRetry = async (maxRetries = 3) => {
+    const emailData = {
       from: process.env.CONTACT_FROM_EMAIL ?? "Omnia Construction <onboarding@resend.dev>",
       to: recipientEmail,
       ...(email ? { reply_to: email } : {}),
@@ -123,12 +177,55 @@ Phone: ${phone || "Not provided"}
 
 Message:
 ${message}`,
-    });
+    };
 
-    console.log({ requestId, event: "email_sent_successfully" });
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+      try {
+        console.log({ requestId, event: "sending_email", attempt: attempt + 1, recipient: recipientEmail });
+        await resend.emails.send(emailData);
+        console.log({ requestId, event: "email_sent_successfully", attempt: attempt + 1 });
+        return true;
+      } catch (error) {
+        const isLastAttempt = attempt === maxRetries - 1;
+        console.error({
+          requestId,
+          event: "email_send_failed",
+          attempt: attempt + 1,
+          isLastAttempt,
+          error: error instanceof Error ? error.message : "Unknown error"
+        });
+
+        if (isLastAttempt) {
+          throw error; // Throw on last attempt
+        }
+
+        // Exponential backoff: 1s, 2s, 4s
+        const waitTime = Math.pow(2, attempt) * 1000;
+        console.log({ requestId, event: "retrying_email", waitTime });
+        await new Promise(resolve => setTimeout(resolve, waitTime));
+      }
+    }
+
+    return false;
+  };
+
+  try {
+    await sendEmailWithRetry();
     return response.status(200).json({ success: true });
   } catch (error) {
-    console.error({ requestId, event: "email_send_failed", error: error instanceof Error ? error.message : "Unknown error" });
-    return response.status(500).json({ error: "Unable to send message right now." });
+    // Capture error in Sentry
+    Sentry.captureException(error, {
+      tags: {
+        endpoint: "contact",
+        requestId,
+      },
+      extra: {
+        name,
+        hasEmail: !!email,
+        hasPhone: !!phone,
+      },
+    });
+
+    return response.status(500).json({ error: "Unable to send message right now. Please try again." });
   }
 }
