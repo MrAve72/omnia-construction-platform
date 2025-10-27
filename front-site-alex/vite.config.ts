@@ -32,72 +32,21 @@ export default defineConfig(({ mode }) => ({
 
     rollupOptions: {
       output: {
-        // Manual chunk splitting strategy
-        manualChunks: (id) => {
-          // Vendor chunk for core React ecosystem
-          if (id.includes('node_modules')) {
-            // React core and DOM
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'vendor-react';
-            }
-
-            // React Router
-            if (id.includes('react-router-dom')) {
-              return 'vendor-router';
-            }
-
-            // State management (Redux, React Query)
-            if (id.includes('@reduxjs/toolkit') || id.includes('react-redux') || id.includes('@tanstack/react-query')) {
-              return 'vendor-state';
-            }
-
-            // UI libraries - Radix UI components (largest dependency group)
-            if (id.includes('@radix-ui')) {
-              return 'vendor-radix';
-            }
-
-            // UI libraries - Mantine
-            if (id.includes('@mantine')) {
-              return 'vendor-mantine';
-            }
-
-            // Chart libraries
-            if (id.includes('recharts') || id.includes('d3-')) {
-              return 'vendor-charts';
-            }
-
-            // Form handling
-            if (id.includes('react-hook-form') || id.includes('@hookform') || id.includes('zod')) {
-              return 'vendor-forms';
-            }
-
-            // Icons
-            if (id.includes('lucide-react') || id.includes('react-icons')) {
-              return 'vendor-icons';
-            }
-
-            // Monitoring and analytics
-            if (id.includes('@sentry') || id.includes('@vercel/speed-insights')) {
-              return 'vendor-monitoring';
-            }
-
-            // Date utilities
-            if (id.includes('date-fns') || id.includes('react-day-picker')) {
-              return 'vendor-date';
-            }
-
-            // Other utilities and smaller libraries
-            if (id.includes('node_modules')) {
-              return 'vendor-utils';
-            }
-          }
+        // Simplified chunk splitting to avoid dependency issues
+        manualChunks: {
+          // Single vendor chunk for all node_modules to ensure proper loading order
+          vendor: [
+            'react',
+            'react-dom',
+            'react-router-dom',
+            '@tanstack/react-query',
+            '@sentry/react',
+            '@vercel/speed-insights',
+          ],
         },
 
         // Naming strategy for chunks
-        chunkFileNames: (chunkInfo) => {
-          const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/').pop() : 'chunk';
-          return `assets/[name]-[hash].js`;
-        },
+        chunkFileNames: 'assets/[name]-[hash].js',
 
         // Entry file naming
         entryFileNames: 'assets/[name]-[hash].js',
