@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { Resend } from "resend";
+import { v4 as uuidv4 } from "uuid";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL;
@@ -43,8 +44,22 @@ const createEmailHtml = (name: string, email: string, phone: string, message: st
 `;
 
 export default async function handler(request: VercelRequest, response: VercelResponse) {
+  // Generate correlation ID for request tracing
+  const requestId = uuidv4();
+
+  // Set security headers
+  response.setHeader("X-Content-Type-Options", "nosniff");
+  response.setHeader("X-Frame-Options", "DENY");
+  response.setHeader("X-XSS-Protection", "1; mode=block");
+  response.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.setHeader("Content-Security-Policy", "default-src 'none'; frame-ancestors 'none'");
+  response.setHeader("X-Request-ID", requestId);
+
+  console.log({ requestId, event: "request_received", method: request.method });
+
   if (request.method !== "POST") {
     response.setHeader("Allow", "POST");
+    console.log({ requestId, event: "method_not_allowed", method: request.method });
     return response.status(405).json({ error: "Method Not Allowed" });
   }
 
@@ -56,6 +71,12 @@ export default async function handler(request: VercelRequest, response: VercelRe
 
   if (!name || !message) {
     return response.status(400).json({ error: "Name and message are required." });
+  }
+
+  if (message.length > 5000) {
+    return response.status(400).json({
+      error: "Message is too long. Please limit your message to 5000 characters."
+    });
   }
 
   if (!email && !phone) {
@@ -74,16 +95,20 @@ export default async function handler(request: VercelRequest, response: VercelRe
   }
 
   if (!resend || !resendApiKey) {
-    console.error("Missing RESEND_API_KEY environment variable.");
+    console.error({ requestId, event: "missing_resend_key" });
     return response.status(500).json({ error: "Email service is not configured." });
   }
 
   if (!recipientEmail) {
-    console.error("Missing CONTACT_RECIPIENT_EMAIL environment variable.");
+    console.error({ requestId, event: "missing_recipient_email" });
     return response.status(500).json({ error: "Recipient email is not configured." });
   }
 
+  console.log({ requestId, event: "validation_passed", hasEmail: !!email, hasPhone: !!phone });
+
   try {
+    console.log({ requestId, event: "sending_email", recipient: recipientEmail });
+
     await resend.emails.send({
       from: process.env.CONTACT_FROM_EMAIL ?? "Omnia Construction <onboarding@resend.dev>",
       to: recipientEmail,
@@ -100,9 +125,10 @@ Message:
 ${message}`,
     });
 
+    console.log({ requestId, event: "email_sent_successfully" });
     return response.status(200).json({ success: true });
   } catch (error) {
-    console.error("Failed to send contact email:", error);
+    console.error({ requestId, event: "email_send_failed", error: error instanceof Error ? error.message : "Unknown error" });
     return response.status(500).json({ error: "Unable to send message right now." });
   }
 }

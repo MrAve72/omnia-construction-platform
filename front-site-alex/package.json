@@ -46,6 +46,7 @@
     "@radix-ui/react-tooltip": "^1.1.4",
     "@reduxjs/toolkit": "^2.6.1",
     "@tanstack/react-query": "^5.56.2",
+    "@types/uuid": "^10.0.0",
     "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -69,6 +70,7 @@
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "uuid": "^13.0.0",
     "vaul": "^0.9.3",
     "zod": "^3.23.8"
   },
@@ -81,6 +83,7 @@
     "@vercel/node": "^5.4.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.20",
+    "caniuse-lite": "^1.0.30001751",
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",

@@ -60,6 +60,15 @@ const ContactForm = () => {
       return;
     }
 
+    if (trimmedData.message.length > 5000) {
+      toast({
+        title: "Message too long",
+        description: "Please limit your message to 5000 characters.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const response = await fetch("/api/contact", {
@@ -220,9 +229,14 @@ const ContactForm = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                      Message
-                    </label>
+                    <div className="flex justify-between items-center mb-1">
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                        Message
+                      </label>
+                      <span className={`text-xs ${formData.message.length > 5000 ? 'text-red-600 font-semibold' : 'text-gray-500'}`}>
+                        {formData.message.length}/5000
+                      </span>
+                    </div>
                     <textarea
                       id="message"
                       name="message"
@@ -230,6 +244,7 @@ const ContactForm = () => {
                       onChange={handleChange}
                       required
                       rows={5}
+                      maxLength={5000}
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition-all resize-none"
                       placeholder="How can we help you?"
                     ></textarea>
