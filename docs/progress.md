@@ -1,5 +1,106 @@
 # Project Progress Log
 
+## 2025-10-26: Phase 2 Implementation Complete - Critical Security
+
+**Completed Tasks:**
+1. ✅ Sentry error tracking (backend + frontend)
+2. ✅ Rate limiting with Upstash Redis (10 req/hour)
+3. ✅ Email retry logic with exponential backoff (3 attempts)
+4. ✅ Environment variables documentation (.env.example)
+
+**Implementation Details:**
+
+### 1. Sentry Error Tracking
+**Backend (@sentry/node):**
+- Automatic error capture in serverless function
+- Request context tracking (requestId, headers, method)
+- Tags for filtering (endpoint, requestId)
+- Extra context (name, hasEmail, hasPhone)
+- Environment-aware (dev/production)
+
+**Frontend (@sentry/react):**
+- Error boundary wrapper for entire app
+- Sentry-enhanced routing (withSentryRouting)
+- Browser tracing integration
+- Session replay (10% sample, 100% on errors)
+- Automatic React component stack traces
+
+### 2. Rate Limiting (Upstash Redis)
+**Configuration:**
+- 10 requests per hour per IP address
+- Redis key: `rate_limit:contact:{ip}`
+- 1-hour (3600s) expiry window
+- Returns HTTP 429 when limit exceeded
+- Graceful degradation if Redis unavailable
+
+**IP Detection:**
+```javascript
+const ip = request.headers["x-forwarded-for"]?.split(",")[0] ||
+            request.headers["x-real-ip"] ||
+            "unknown";
+```
+
+**Logging Events:**
+- `rate_limit_check` - Normal request with count
+- `rate_limit_exceeded` - Blocked request
+- `rate_limit_error` - Redis failure
+
+### 3. Email Retry Logic
+**Exponential Backoff:**
+- Attempt 1: Immediate
+- Attempt 2: Wait 1 second
+- Attempt 3: Wait 2 seconds
+- Final attempt: Wait 4 seconds
+
+**Implementation:**
+- Maximum 3 retry attempts
+- Only retries on transient failures
+- Logs each attempt with number
+- Throws error after final failure
+- Sentry captures final error
+
+**Benefits:**
+- Resilience against temporary Resend API issues
+- Network timeout recovery
+- Better success rate
+
+### 4. Environment Variables
+Created `.env.example` documenting all required variables:
+- `SENTRY_DSN` - Backend error tracking
+- `VITE_SENTRY_DSN` - Frontend error tracking
+- `UPSTASH_REDIS_REST_URL` - Rate limiting
+- `UPSTASH_REDIS_REST_TOKEN` - Rate limiting
+- (Existing: RESEND_API_KEY, CONTACT_RECIPIENT_EMAIL)
+
+**Dependencies Added:**
+- @sentry/node (70 packages)
+- @sentry/react (included in above)
+- @upstash/redis (2 packages)
+
+**Total new packages:** 72
+
+**Commit:** 45d878a
+**Time Spent:** ~6-8 hours
+**Files Changed:**
+- api/contact.ts (+100 lines)
+- front-site-alex/src/main.tsx (Sentry init)
+- front-site-alex/src/App.tsx (ErrorBoundary)
+- front-site-alex/package.json
+- front-site-alex/package-lock.json
+- .env.example (new)
+
+**Setup Required in Vercel Dashboard:**
+1. Create Sentry project → Get DSN
+2. Add SENTRY_DSN env var
+3. Add VITE_SENTRY_DSN env var
+4. Create Upstash Redis database
+5. Add UPSTASH_REDIS_REST_URL env var
+6. Add UPSTASH_REDIS_REST_TOKEN env var
+
+**Next:** Phase 3 - Performance Optimization (Code Splitting, Build Caching)
+
+---
+
 ## 2025-10-26: Phase 1 Implementation Complete - Quick Wins
 
 **Completed Tasks:**
