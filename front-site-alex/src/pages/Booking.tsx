@@ -1,11 +1,15 @@
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/useSEO";
 
 const CALENDLY_SCRIPT_SRC = "https://assets.calendly.com/assets/external/widget.js";
 const CALENDLY_BOOKING_URL = "https://calendly.com/d/csnk-yhg-vxv";
 
 const Booking = () => {
+  // Set SEO meta tags for booking page
+  useSEO();
+
   useEffect(() => {
     let script = document.querySelector<HTMLScriptElement>(
       `script[src="${CALENDLY_SCRIPT_SRC}"]`

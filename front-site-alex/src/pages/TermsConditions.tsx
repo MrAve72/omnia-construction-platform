@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/useSEO";
 
 const TermsConditions = () => {
+  // Set SEO meta tags for terms and conditions page
+  useSEO();
+
   // Handle animations on scroll
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {

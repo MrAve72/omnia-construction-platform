@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useSEO } from "@/hooks/useSEO";
 
 interface Project {
   id: number;
@@ -179,6 +180,9 @@ const projects: Project[] = [
 ];
 
 const Portfolio = () => {
+  // Set SEO meta tags for portfolio page
+  useSEO();
+
   const [projectsList] = useState<Project[]>(projects);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

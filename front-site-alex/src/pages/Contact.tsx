@@ -2,8 +2,12 @@ import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
+import { useSEO } from "@/hooks/useSEO";
 
 const Contact = () => {
+  // Set SEO meta tags for contact page
+  useSEO();
+
   // Handle animations on scroll
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
