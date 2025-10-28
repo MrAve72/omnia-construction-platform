@@ -42,7 +42,7 @@ const beforeAfterProjects: BeforeAfterProject[] = [
 ];
 
 // Компонент слайдера для сравнения "до" и "после"
-const BeforeAfterSlider = ({ beforeImage, afterImage }: { beforeImage: string; afterImage: string }) => {
+const BeforeAfterSlider = ({ beforeImage, afterImage, projectTitle }: { beforeImage: string; afterImage: string; projectTitle: string }) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const sliderContainerRef = useRef<HTMLDivElement>(null);
@@ -184,7 +184,7 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }: { beforeImage: string; a
           <img
             ref={beforeImageRef}
             src={beforeImage}
-            alt={`Before ${activeProject.title} - Minneapolis home renovation`}
+            alt={`Before ${projectTitle} - Minneapolis home renovation`}
             className="w-full h-full object-contain max-h-full max-w-full p-2"
             loading="lazy"
             onLoad={() => console.log('Before image loaded')}
@@ -199,7 +199,7 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }: { beforeImage: string; a
           <img 
             ref={afterImageRef}
             src={afterImage}
-            alt={`After ${activeProject.title} - completed renovation by Omnia Construction Minnesota`}
+            alt={`After ${projectTitle} - completed renovation by Omnia Construction Minnesota`}
             className="w-full h-full object-contain max-h-full max-w-full p-2"
             loading="lazy"
             style={{
@@ -260,9 +260,10 @@ const GallerySection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-6xl mx-auto reveal">
           {/* Слайдер сравнения "до" и "после" */}
           <div className="lg:col-span-3 bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-            <BeforeAfterSlider 
-              beforeImage={activeProject.beforeImage} 
-              afterImage={activeProject.afterImage} 
+            <BeforeAfterSlider
+              beforeImage={activeProject.beforeImage}
+              afterImage={activeProject.afterImage}
+              projectTitle={activeProject.title}
             />
           </div>
           
