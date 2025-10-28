@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Block admin/internal pages (if any in future)
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://www.omniaconstructionmn.com/sitemap.xml
+
+# Crawl-delay for polite bots
+Crawl-delay: 1
