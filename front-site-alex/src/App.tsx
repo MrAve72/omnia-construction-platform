@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import * as Sentry from "@sentry/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { StructuredData } from "@/components/StructuredData";
 
 // Lazy load all page components for code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -44,6 +45,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <StructuredData />
           <Suspense fallback={<LoadingFallback />}>
             <SentryRoutes>
               <Route path="/" element={<Index />} />
