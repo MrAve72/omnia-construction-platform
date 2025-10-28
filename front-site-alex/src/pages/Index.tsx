@@ -7,6 +7,7 @@ import GallerySection from "@/components/GallerySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactForm from "@/components/ContactForm";
 import PricingSection from "@/components/PricingSection";
+import MinnesotaContentSection from "@/components/MinnesotaContentSection";
 import { PhoneOff, Calendar, Camera, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -49,7 +50,10 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
-        
+
+        {/* Minnesota-focused SEO content - 1000+ words */}
+        <MinnesotaContentSection />
+
         {/* No Phone Call Required Feature Section */}
         <section className="pt-16 bg-gray-50">
           <div className="container mx-auto px-6">
