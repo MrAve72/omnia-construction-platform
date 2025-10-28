@@ -13,31 +13,31 @@ interface BeforeAfterProject {
   description: string;
 }
 
-// Примеры проектов с изображениями "до" и "после"
+// Before/After projects with Minnesota-focused SEO
 const beforeAfterProjects: BeforeAfterProject[] = [
   {
     id: 1,
-    title: "Bathroom Remodel",
-    category: "Home Improvement",
-    beforeImage: "/gallery/Bathroom remodel/3.jpg",
-    afterImage: "/gallery/Bathroom remodel/1.jpg",
-    description: "Complete transformation from an outdated bathroom to a modern minimalist style with new fixtures and finishes."
+    title: "Bathroom Remodel Minneapolis",
+    category: "Bathroom Renovation",
+    beforeImage: "/gallery/Bathroom remodel/3.webp",
+    afterImage: "/gallery/Bathroom remodel/1.webp",
+    description: "Complete bathroom transformation in Minneapolis - from outdated fixtures to modern minimalist design with new vanity, tile work, and lighting."
   },
   {
     id: 2,
-    title: "Engineering Laminate Flooring",
-    category: "Flooring",
-    beforeImage: "/gallery/Engeneering laminate/2.jpg",
-    afterImage: "/gallery/Engeneering laminate/1.jpg",
-    description: "Installation of high-quality engineered laminate flooring for durability and beautiful aesthetics."
+    title: "Engineered Laminate Flooring Twin Cities",
+    category: "Flooring Installation",
+    beforeImage: "/gallery/Engeneering laminate/2.webp",
+    afterImage: "/gallery/Engeneering laminate/1.webp",
+    description: "Professional installation of high-quality engineered laminate flooring for Twin Cities home - durable, beautiful, and long-lasting."
   },
   {
     id: 3,
-    title: "Wall Construction",
+    title: "Custom Wall Construction St. Paul",
     category: "Home Improvement",
-    beforeImage: "/gallery/Wall build/5.jpg",
-    afterImage: "/gallery/Wall build/1.jpg",
-    description: "Professional wall building services to modify and enhance interior spaces."
+    beforeImage: "/gallery/Wall build/5.webp",
+    afterImage: "/gallery/Wall build/1.webp",
+    description: "Expert wall construction services in St. Paul to modify and enhance interior spaces - quality craftsmanship and attention to detail."
   }
 ];
 
@@ -181,11 +181,12 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }: { beforeImage: string; a
       >
         {/* Изображение "до" (видно полностью) */}
         <div className="absolute inset-0 border border-gray-200 flex items-center justify-center bg-white">
-          <img 
+          <img
             ref={beforeImageRef}
-            src={beforeImage} 
-            alt="Before" 
+            src={beforeImage}
+            alt={`Before ${activeProject.title} - Minneapolis home renovation`}
             className="w-full h-full object-contain max-h-full max-w-full p-2"
+            loading="lazy"
             onLoad={() => console.log('Before image loaded')}
           />
         </div>
@@ -197,10 +198,11 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }: { beforeImage: string; a
         >
           <img 
             ref={afterImageRef}
-            src={afterImage} 
-            alt="After" 
-            className="w-full h-full object-contain max-h-full max-w-full p-2" 
-            style={{ 
+            src={afterImage}
+            alt={`After ${activeProject.title} - completed renovation by Omnia Construction Minnesota`}
+            className="w-full h-full object-contain max-h-full max-w-full p-2"
+            loading="lazy"
+            style={{
               width: `${100 / (sliderPosition / 100)}%`,
               minWidth: '100%',
               maxWidth: '500%'
@@ -288,9 +290,10 @@ const GallerySection = () => {
                   )}
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                  <img 
-                    src={project.afterImage} 
-                    alt={project.title} 
+                  <img
+                    src={project.afterImage}
+                    alt={`${project.title} - Omnia Construction Minneapolis remodeling project`}
+                    loading="lazy"
                     className="w-full h-full object-contain bg-white"
                   />
                   {activeProject.id === project.id && (
