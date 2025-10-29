@@ -62,7 +62,7 @@ const MinnesotaContentSection = () => {
                 <h3 className="font-semibold">5-Star Reviews</h3>
               </div>
               <p className="text-gray-600 text-sm">
-                15 verified Thumbtack reviews with perfect 5.0 rating from satisfied customers
+                Verified Thumbtack reviews with perfect 5.0 rating from satisfied customers
               </p>
             </div>
           </div>
