@@ -79,7 +79,7 @@ const MinnesotaContentSection = () => {
               Our comprehensive kitchen remodeling services for Twin Cities homeowners include custom cabinet installation in styles ranging from traditional to modern farmhouse, professional countertop fabrication and installation using granite, quartz, and marble, beautiful backsplash tile work, hardwood and engineered flooring installation, and modern lighting design. We also handle all necessary electrical and plumbing updates to meet current Minnesota building codes.
             </p>
             <p className="text-gray-700 leading-relaxed mb-6">
-              <strong>Kitchen Remodeling Pricing in Minneapolis:</strong> We believe in transparent pricing. Minor kitchen updates including cabinet refacing and countertop replacement typically start from $4,000. Mid-range kitchen renovations with new cabinets, countertops, and appliances generally range from $15,000 to $35,000. Full kitchen remodels with layout changes, custom cabinetry, and premium materials start from $35,000. <strong>Every project is unique</strong> - that's why we provide a free, detailed personalized estimate with no hidden costs or obligations.
+              <strong>Kitchen Remodeling Pricing in Minneapolis:</strong> We believe in transparent pricing. Minor kitchen updates including cabinet refacing and countertop replacement typically start from $4,700. Mid-range kitchen renovations with new cabinets, countertops, and appliances generally range from $15,000 to $35,000. Full kitchen remodels with layout changes, custom cabinetry, and premium materials start from $35,000. <strong>Every project is unique</strong> - that's why we provide a free, detailed personalized estimate with no hidden costs or obligations.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ const MinnesotaContentSection = () => {
               Our bathroom renovation expertise includes walk-in shower installations with frameless glass enclosures, tub-to-shower conversions for improved accessibility, custom vanity installation with modern fixtures, professional tile work for floors, walls, and shower surrounds, and accessibility modifications for aging-in-place. We handle everything from powder room updates to complete master bathroom transformations.
             </p>
             <p className="text-gray-700 leading-relaxed mb-6">
-              <strong>Bathroom Remodeling Costs in St. Paul & Minneapolis:</strong> Basic bathroom updates including new fixtures and paint typically start from $4,000. Standard bathroom renovations with new tub/shower, vanity, and tile work generally range from $12,000 to $25,000. Luxury bathroom remodels with premium materials and custom features start from $25,000. <strong>Your exact cost depends on your specific needs and material choices</strong> - contact us for a free, detailed estimate that includes materials, labor, permits, and cleanup with no obligation.
+              <strong>Bathroom Remodeling Costs in St. Paul & Minneapolis:</strong> Basic bathroom updates including new fixtures and paint typically start from $3,900. Standard bathroom renovations with new tub/shower, vanity, and tile work generally range from $12,000 to $25,000. Luxury bathroom remodels with premium materials and custom features start from $25,000. <strong>Your exact cost depends on your specific needs and material choices</strong> - contact us for a free, detailed estimate that includes materials, labor, permits, and cleanup with no obligation.
             </p>
           </div>
 
