@@ -220,8 +220,6 @@ const ContactForm = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       required={phoneRequired}
-                      pattern="[0-9]{3}[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}"
-                      title="Enter a valid US phone number (e.g., 123-456-7890)"
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition-all"
                       placeholder="123-456-7890"
                     />
