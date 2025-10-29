@@ -1,8 +1,8 @@
 {
-  "installCommand": "cd front-site-alex && npm install",
+  "installCommand": "npm install && cd front-site-alex && npm install",
   "buildCommand": "cd front-site-alex && npm run build",
   "outputDirectory": "front-site-alex/dist",
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!api).*)", "destination": "/index.html" }
   ]
 }
