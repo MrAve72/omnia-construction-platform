@@ -146,7 +146,7 @@ const TestimonialsSection = () => {
           </span>
           <h2 className="mb-6">What Our Clients Say</h2>
           <p className="text-gray-600 text-lg">
-            We take pride in our work and the satisfaction of our clients. See our 5-star rating from 32 verified reviews on Thumbtack.
+            We take pride in our work and the satisfaction of our clients. See our 5-star rating on Thumbtack.
           </p>
         </div>
 
@@ -172,7 +172,6 @@ const TestimonialsSection = () => {
                         />
                       ))}
                     </div>
-                   <span className="text-gray-700 font-medium">15 reviews</span>
                   </div>
                 </div>
                 <h3 className="text-lg font-medium text-gray-800 ml-1">Alex Omnia Construction LLC</h3>
@@ -272,7 +271,6 @@ const TestimonialsSection = () => {
                 <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="Star" />
                 <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="Star" />
                 <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="Star" />
-                <span>15 reviews</span>
               </div>
             </div>
           </div>
