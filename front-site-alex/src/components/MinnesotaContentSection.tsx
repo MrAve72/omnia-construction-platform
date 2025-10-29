@@ -79,7 +79,7 @@ const MinnesotaContentSection = () => {
               Our comprehensive kitchen remodeling services for Twin Cities homeowners include custom cabinet installation in styles ranging from traditional to modern farmhouse, professional countertop fabrication and installation using granite, quartz, and marble, beautiful backsplash tile work, hardwood and engineered flooring installation, and modern lighting design. We also handle all necessary electrical and plumbing updates to meet current Minnesota building codes.
             </p>
             <p className="text-gray-700 leading-relaxed mb-6">
-              <strong>Kitchen Remodeling Pricing in Minneapolis:</strong> Our transparent pricing reflects the quality craftsmanship Twin Cities homeowners expect. Minor kitchen updates including cabinet refacing and countertop replacement typically range from $4,000 to $15,000. Mid-range kitchen renovations with new cabinets, countertops, and appliances average $15,000 to $35,000. Full kitchen remodels with layout changes, custom cabinetry, and premium materials range from $35,000 to $50,000+. Every project includes a detailed estimate with no hidden costs.
+              <strong>Kitchen Remodeling Pricing in Minneapolis:</strong> We believe in transparent pricing. Minor kitchen updates including cabinet refacing and countertop replacement typically start from $4,000. Mid-range kitchen renovations with new cabinets, countertops, and appliances generally range from $15,000 to $35,000. Full kitchen remodels with layout changes, custom cabinetry, and premium materials start from $35,000. <strong>Every project is unique</strong> - that's why we provide a free, detailed personalized estimate with no hidden costs or obligations.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ const MinnesotaContentSection = () => {
               Our bathroom renovation expertise includes walk-in shower installations with frameless glass enclosures, tub-to-shower conversions for improved accessibility, custom vanity installation with modern fixtures, professional tile work for floors, walls, and shower surrounds, and accessibility modifications for aging-in-place. We handle everything from powder room updates to complete master bathroom transformations.
             </p>
             <p className="text-gray-700 leading-relaxed mb-6">
-              <strong>Bathroom Remodeling Costs in St. Paul & Minneapolis:</strong> Basic bathroom updates including new fixtures and paint typically cost $4,000 to $12,000. Standard bathroom renovations with new tub/shower, vanity, and tile work range from $12,000 to $25,000. Luxury bathroom remodels with premium materials, custom features, and layout changes range from $25,000 to $40,000+. All estimates include materials, labor, permits, and cleanup.
+              <strong>Bathroom Remodeling Costs in St. Paul & Minneapolis:</strong> Basic bathroom updates including new fixtures and paint typically start from $4,000. Standard bathroom renovations with new tub/shower, vanity, and tile work generally range from $12,000 to $25,000. Luxury bathroom remodels with premium materials and custom features start from $25,000. <strong>Your exact cost depends on your specific needs and material choices</strong> - contact us for a free, detailed estimate that includes materials, labor, permits, and cleanup with no obligation.
             </p>
           </div>
 
@@ -136,9 +136,9 @@ const MinnesotaContentSection = () => {
               </div>
 
               <div className="bg-white border border-gray-200 p-6 rounded-xl">
-                <h4 className="font-semibold mb-3 text-gray-900">Transparent Pricing</h4>
+                <h4 className="font-semibold mb-3 text-gray-900">Free Detailed Estimates</h4>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  No surprise costs or hidden fees. We provide detailed written estimates that break down materials, labor, and all project costs. Our pricing is competitive with other licensed Minneapolis contractors while maintaining superior quality.
+                  No surprise costs or hidden fees. We provide free, detailed written estimates that break down materials, labor, and all project costs. Our competitive pricing reflects quality craftsmanship while respecting your budget - with no obligation to proceed.
                 </p>
               </div>
 
@@ -187,7 +187,7 @@ const MinnesotaContentSection = () => {
               Ready to Transform Your Minneapolis Home?
             </h3>
             <p className="text-lg mb-6 text-indigo-50">
-              Get a free, detailed estimate for your kitchen or bathroom remodeling project
+              Get your FREE, detailed personalized estimate - no obligation, no pressure
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
