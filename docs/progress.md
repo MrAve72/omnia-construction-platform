@@ -1,5 +1,83 @@
 # Project Progress Log
 
+## October 31, 2025 - Sitemap.xml SEO Fix + Documentation Cleanup ✅
+
+### Critical SEO Fix: Sitemap.xml Accessibility
+**Status:** ✅ COMPLETED & DEPLOYED
+**Commit:** 507d105
+**Date:** October 31, 2025
+**Duration:** 30 minutes
+
+**Problem:**
+Google Search Console reported errors for `/contact` and `/booking`:
+- "При обработке файла Sitemap обнаружены ошибки"
+- "Файл Sitemap является страницей HTML"
+- Google received React SPA (HTML) instead of sitemap.xml (XML)
+
+**Root Cause:**
+Vercel rewrite rule in `vercel.json` was too broad:
+```json
+{ "source": "/((?!api).*)", "destination": "/index.html" }
+```
+This pattern excluded ONLY `/api/*` but redirected ALL other requests (including `/sitemap.xml` and `/robots.txt`) to React SPA.
+
+**Solution:**
+Updated negative lookahead to exclude static SEO files:
+```json
+{ "source": "/((?!api|sitemap\\.xml|robots\\.txt).*)", "destination": "/index.html" }
+```
+
+**Verification:**
+- ✅ `https://www.omniaconstructionmn.com/sitemap.xml` returns XML (not HTML)
+- ✅ `Content-Type: application/xml` header correct
+- ✅ `https://www.omniaconstructionmn.com/robots.txt` returns text/plain
+- ✅ All SPA routes still work correctly
+- ✅ All 8 pages in sitemap accessible
+
+**Impact:**
+- Google Search Console errors will resolve within 24-48 hours
+- Sitemap will be properly indexed
+- Search engine crawling improved
+- Better SEO visibility for all pages
+
+**Files Modified:**
+- `vercel.json` (line 6: updated rewrite regex)
+
+**Documentation Cleanup:**
+Also cleaned up duplicate documentation files:
+- ✅ Removed `progress.md` (root) - 100% duplicate of docs/progress.md
+- ✅ Removed `progress-OLD.md` - outdated October 26 version
+- ✅ Removed `progress-OLD-OCT26.md` - duplicate of progress-OLD.md
+- ✅ Removed `docs/decisions-phase4-5.md` - merged into docs/decisions.md
+- ✅ Consolidated all ADRs (ADR-001 to ADR-025) into docs/decisions.md
+- ✅ Added ADR-023 (Keyboard Navigation), ADR-024 (Focus Trapping), ADR-025 (TypeScript Strict Mode)
+
+**Final Documentation Structure:**
+```
+docs/
+├── progress.md (единственный источник истины)
+├── bugs.md
+├── decisions.md (ADR-001 до ADR-025)
+├── README.md
+├── comprehensive-seo-audit-OCT30-2025.md
+├── text-on-image-readability-audit-OCT28-2025.md
+├── sales-funnel-analysis-homepage-RU-OCT30-2025.md
+├── competitive-analysis-minnesota.md
+└── build-system-analysis.md
+```
+
+**Next Steps:**
+- [ ] Monitor Google Search Console for sitemap re-indexing (24-48 hours)
+- [ ] Verify all 8 pages indexed successfully
+- [ ] Check for any new crawl errors
+
+**Expected SEO Impact:**
+- Sitemap errors: 2 → 0
+- Indexed pages: Improved crawl coverage
+- Search visibility: Enhanced for all routes
+
+---
+
 ## 2025-10-26: Phase 4 & 5 Parallel Implementation Complete - UI/UX + TypeScript Strict Mode
 
 ### Orchestration Summary
