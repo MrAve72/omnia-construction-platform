@@ -63,14 +63,9 @@ export default async function handler(request: VercelRequest, response: VercelRe
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
 
   if (email && !emailRegex.test(email)) {
     return response.status(400).json({ error: "Please provide a valid email address." });
-  }
-
-  if (phone && !phoneRegex.test(phone)) {
-    return response.status(400).json({ error: "Please provide a valid US phone number." });
   }
 
   if (!resend || !resendApiKey) {

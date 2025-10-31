@@ -31,7 +31,6 @@ const ContactForm = () => {
     };
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const usPhoneRegex = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
 
     if (!trimmedData.email && !trimmedData.phone) {
       toast({
@@ -46,15 +45,6 @@ const ContactForm = () => {
       toast({
         title: "Invalid email",
         description: "Please enter a valid email address (e.g., name@example.com).",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (trimmedData.phone && !usPhoneRegex.test(trimmedData.phone)) {
-      toast({
-        title: "Invalid phone number",
-        description: "Please enter a valid US phone number (e.g., 123-456-7890)",
         variant: "destructive",
       });
       return;
