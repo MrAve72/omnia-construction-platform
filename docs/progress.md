@@ -1,5 +1,64 @@
 # Project Progress Log
 
+## October 31, 2025 - Phone Validation Removed from Contact Form ✅
+
+### Complete Phone Validation Removal
+**Status:** ✅ COMPLETED & DEPLOYED
+**Commit:** 26f6447
+**Date:** October 31, 2025
+**Duration:** 15 minutes
+
+**User Request:**
+"Убери полностью любую валидацию с Phone блокирующую отправку формы с формы Send Us a Message"
+
+**Changes Made:**
+
+**1. Frontend (ContactForm.tsx):**
+- ❌ Removed `usPhoneRegex` validation
+- ❌ Removed phone format validation toast
+- ❌ Removed client-side phone blocking
+
+**2. Backend (api/contact.ts):**
+- ❌ Removed `phoneRegex` validation
+- ❌ Removed server-side phone format check
+- ❌ Removed 400 error for invalid phone format
+
+**Validation that REMAINS:**
+- ✅ Name required
+- ✅ Message required
+- ✅ At least email OR phone required (one must be provided)
+- ✅ Email format validation (if email provided)
+- ✅ Message length limit (5000 characters)
+
+**Validation REMOVED:**
+- ❌ Phone format validation - now accepts ANY input
+
+**Testing Results:**
+All tests passed successfully:
+1. ✅ Valid US format: `612-849-9633` → Success
+2. ✅ International format: `+44 20 1234 5678` → Success
+3. ✅ With extension: `123-456-7890 ext 123` → Success
+4. ✅ Random text: `call me maybe` → Success
+5. ✅ Empty phone with email: `test@example.com` → Success
+
+**User Impact:**
+- Users can now enter phone numbers in ANY format without being blocked
+- International numbers accepted
+- Extensions accepted
+- Even non-numeric text accepted (for edge cases like "call me")
+- Better UX - no frustration from format errors
+
+**Files Modified:**
+- `front-site-alex/src/components/ContactForm.tsx` (removed 9 lines of validation)
+- `api/contact.ts` (removed phone regex and validation check)
+
+**Expected Outcome:**
+- Increased form submissions (less friction)
+- Better international user experience
+- Fewer abandoned forms due to phone format issues
+
+---
+
 ## October 31, 2025 - Sitemap.xml SEO Fix + Documentation Cleanup ✅
 
 ### Critical SEO Fix: Sitemap.xml Accessibility
