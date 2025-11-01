@@ -29,11 +29,10 @@ const parseBody = (request: VercelRequest) => {
   return request.body;
 };
 
-const createEmailHtml = (name: string, email: string, phone: string, message: string) => `
+const createEmailHtml = (email: string, phone: string, message: string) => `
   <div style="font-family: Arial, sans-serif; color: #111827; line-height: 1.6;">
     <h2 style="margin-bottom: 16px;">New Contact Form Submission</h2>
-    <p style="margin: 8px 0;"><strong>Name:</strong> ${sanitize(name)}</p>
-    <p style="margin: 8px 0;"><strong>Email:</strong> ${renderValue(email)}</p>
+    <p style="margin: 8px 0;"><strong>Email:</strong> ${sanitize(email)}</p>
     <p style="margin: 8px 0;"><strong>Phone:</strong> ${renderValue(phone)}</p>
     <p style="margin: 16px 0;"><strong>Message:</strong></p>
     <p style="background: #f9fafb; padding: 12px; border-radius: 8px; border: 1px solid #e5e7eb;">${sanitize(
@@ -49,22 +48,17 @@ export default async function handler(request: VercelRequest, response: VercelRe
   }
 
   const data = parseBody(request);
-  const name = typeof data?.name === "string" ? data.name.trim() : "";
   const email = typeof data?.email === "string" ? data.email.trim() : "";
   const phone = typeof data?.phone === "string" ? data.phone.trim() : "";
   const message = typeof data?.message === "string" ? data.message.trim() : "";
 
-  if (!name || !message) {
-    return response.status(400).json({ error: "Name and message are required." });
-  }
-
-  if (!email && !phone) {
-    return response.status(400).json({ error: "Please provide at least an email or a phone number." });
+  if (!message) {
+    return response.status(400).json({ error: "Message is required." });
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (email && !emailRegex.test(email)) {
+  if (!email || !emailRegex.test(email)) {
     return response.status(400).json({ error: "Please provide a valid email address." });
   }
 
@@ -82,13 +76,12 @@ export default async function handler(request: VercelRequest, response: VercelRe
     await resend.emails.send({
       from: process.env.CONTACT_FROM_EMAIL ?? "Omnia Construction <onboarding@resend.dev>",
       to: recipientEmail,
-      ...(email ? { reply_to: email } : {}),
+      reply_to: email,
       subject: "New message from Omnia Construction contact form",
-      html: createEmailHtml(name, email, phone, message),
+      html: createEmailHtml(email, phone, message),
       text: `New contact form submission
 
-Name: ${name}
-Email: ${email || "Not provided"}
+Email: ${email}
 Phone: ${phone || "Not provided"}
 
 Message:

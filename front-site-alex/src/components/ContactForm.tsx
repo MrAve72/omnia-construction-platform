@@ -5,14 +5,11 @@ import { toast } from "@/hooks/use-toast";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     phone: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const emailRequired = formData.phone.trim().length === 0;
-  const phoneRequired = formData.email.trim().length === 0;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -24,7 +21,6 @@ const ContactForm = () => {
     e.preventDefault();
 
     const trimmedData = {
-      name: formData.name.trim(),
       email: formData.email.trim(),
       phone: formData.phone.trim(),
       message: formData.message.trim(),
@@ -32,16 +28,7 @@ const ContactForm = () => {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!trimmedData.email && !trimmedData.phone) {
-      toast({
-        title: "Contact method required",
-        description: "Please provide either an email or a phone number so we can reach you.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (trimmedData.email && !emailRegex.test(trimmedData.email)) {
+    if (!emailRegex.test(trimmedData.email)) {
       toast({
         title: "Invalid email",
         description: "Please enter a valid email address (e.g., name@example.com).",
@@ -75,7 +62,6 @@ const ContactForm = () => {
       }
 
       setFormData({
-        name: "",
         email: "",
         phone: "",
         message: "",
@@ -168,24 +154,8 @@ const ContactForm = () => {
 
                 <div className="space-y-4 mb-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition-all"
-                      placeholder="Your name"
-                    />
-                  </div>
-
-                  <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                      Email <span className="text-xs text-gray-400">(optional if phone provided)</span>
+                      Email
                     </label>
                     <input
                       type="email"
@@ -193,7 +163,7 @@ const ContactForm = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      required={emailRequired}
+                      required
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition-all"
                       placeholder="your@email.com"
                     />
@@ -201,7 +171,7 @@ const ContactForm = () => {
 
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                      Phone <span className="text-xs text-gray-400">(optional if email provided)</span>
+                      Prefer a call? Add your phone <span className="text-xs text-gray-400">(optional)</span>
                     </label>
                     <input
                       type="tel"
@@ -209,11 +179,9 @@ const ContactForm = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      required={phoneRequired}
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition-all"
                       placeholder="123-456-7890"
                     />
-                    <p className="mt-2 text-xs text-gray-500">Provide at least one way for us to contact you.</p>
                   </div>
 
                   <div>
