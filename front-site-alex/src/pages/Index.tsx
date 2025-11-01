@@ -53,9 +53,6 @@ const Index = () => {
         <Hero />
         <TrustBar />
 
-        {/* Minnesota-focused SEO content - 1000+ words */}
-        <MinnesotaContentSection />
-
         {/* No Phone Call Required Feature Section */}
         <section className="pt-16 bg-gray-50">
           <div className="container mx-auto px-6">
@@ -133,6 +130,10 @@ const Index = () => {
         <ServicesSection />
         <GallerySection />
         <TestimonialsSection />
+
+        {/* Minnesota-focused SEO content - 1000+ words with pricing info */}
+        <MinnesotaContentSection />
+
         <PricingSection />
         <ContactForm />
       </main>
