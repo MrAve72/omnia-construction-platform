@@ -2,6 +2,19 @@
   "installCommand": "npm install && cd front-site-alex && npm install",
   "buildCommand": "cd front-site-alex && npm run build",
   "outputDirectory": "front-site-alex/dist",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "omniaconstructionmn.com"
+        }
+      ],
+      "destination": "https://www.omniaconstructionmn.com/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/((?!api|sitemap\\.xml|robots\\.txt).*)", "destination": "/index.html" }
   ]
