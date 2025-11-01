@@ -12,11 +12,11 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background image with overlay */}
+      {/* Background image with stronger overlay for better text contrast */}
       <div className="absolute inset-0 z-0">
-        <div 
-          className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/30 z-10"
-          style={{ 
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-black/75 to-black/60 z-10"
+          style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
@@ -29,12 +29,15 @@ const Hero = () => {
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-white mb-6 animate-fade-in">
-            Tired of Contractors Who Don't Show Up? We're Different.
-          </h1>
-          <p className="text-white/90 text-lg md:text-xl mb-8 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            Minneapolis homeowners trust us for kitchen & bathroom remodels. Book online in 2 minutes. Response within 24 hours. No pressure, no runaround.
-          </p>
+          {/* Text container with backdrop for better readability */}
+          <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 md:p-10 mb-8">
+            <h1 className="text-white mb-6 animate-fade-in" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 4px 8px rgba(0,0,0,0.4)' }}>
+              Tired of Contractors Who Don't Show Up? We're Different.
+            </h1>
+            <p className="text-white text-lg md:text-xl mb-0 animate-fade-in" style={{ animationDelay: '0.1s', textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}>
+              Minneapolis homeowners trust us for kitchen & bathroom remodels. Book online in 2 minutes. Response within 24 hours. No pressure, no runaround.
+            </p>
+          </div>
           
           {/* No Phone Call Required Banner */}
           <div className="bg-gradient-to-r from-purple-600/90 to-indigo-600/90 p-4 rounded-lg mb-8 backdrop-blur-sm shadow-lg animate-fade-in" style={{ animationDelay: '0.15s' }}>
