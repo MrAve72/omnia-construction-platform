@@ -57,30 +57,6 @@ const Index = () => {
         <section className="pt-16 bg-gray-50">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto reveal">
-              <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
-                <a
-                  href="https://www.bbb.org/us/mn/minneapolis/profile/residential-general-contractor/omnia-construction-llc-0704-1000076607/#sealclick"
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  className="inline-flex items-center rounded-lg border border-gray-200 bg-white px-3 py-2 shadow-sm hover:shadow transition-shadow"
-                >
-                  <img
-                    src="https://seal-minnesota.bbb.org/seals/blue-seal-120-61-bbb-1000076607.png"
-                    alt="Omnia Construction LLC BBB Business Review"
-                    loading="lazy"
-                    className="h-14 w-auto md:h-16"
-                  />
-                </a>
-                <div className="text-center md:text-left text-gray-600 text-sm max-w-md">
-                  <p className="uppercase tracking-wide text-xs font-semibold text-indigo-600">
-                    Trusted & Accredited
-                  </p>
-                  <p>
-                    Better Business Bureau Accredited • MN Residential Remodeler License CR807108
-                  </p>
-                </div>
-              </div>
-
               <div className="flex items-center justify-center mb-8">
                 <div className="bg-indigo-100 p-3 rounded-full mr-4">
                   <PhoneOff className="h-6 w-6 text-indigo-600" />

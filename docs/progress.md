@@ -1,5 +1,41 @@
 # Project Progress Log
 
+## October 31, 2025 - Remove Redundant BBB/License Section ✅
+
+### Удаление дублирующей информации о BBB и лицензии
+**Status:** ✅ ЗАВЕРШЕНО
+**Date:** October 31, 2025
+
+**Проблема:**
+
+После добавления Trust Bar (который показывает MN License CR807108 и BBB A+ Rating), секция с BBB badge и лицензией в "Book Without Calls" стала **полностью избыточной**.
+
+**Что было удалено:**
+```tsx
+<div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
+  <a href="https://www.bbb.org/..." target="_blank" rel="nofollow noopener noreferrer">
+    <img src="https://seal-minnesota.bbb.org/seals/blue-seal-120-61-bbb-1000076607.png"
+         alt="Omnia Construction LLC BBB Business Review" />
+  </a>
+  <div className="text-center md:text-left text-gray-600 text-sm max-w-md">
+    <p>Trusted & Accredited</p>
+    <p>Better Business Bureau Accredited • MN Residential Remodeler License CR807108</p>
+  </div>
+</div>
+```
+
+**Обоснование:**
+- ✅ **Устраняет повторение** - Trust Bar уже показывает BBB A+ и MN License
+- ✅ **Улучшает читаемость** - меньше визуального шума
+- ✅ **Сохраняет верификацию** - Trust Bar имеет кликабельную ссылку на MN License
+- ✅ **Более чистый дизайн** - фокус на ключевом сообщении "Book Without Phone Calls"
+
+**Что осталось:**
+- Trust Bar (после Hero) - компактное отображение всех credentials
+- "Book Without Phone Calls" секция - фокус на преимуществе онлайн-букинга
+
+---
+
 ## October 31, 2025 - Task 3 Fix: Minnesota Content Repositioned ✅
 
 ### Исправление позиционирования цен
