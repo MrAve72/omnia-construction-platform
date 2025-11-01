@@ -1,5 +1,72 @@
 # Project Progress Log
 
+## October 31, 2025 - Canonical URL Fix (www vs non-www) ⚠️ Требуется ручная настройка
+
+### SEO Issue: Canonical URL Mismatch
+**Status:** ⚠️ ЧАСТИЧНО РЕШЕНА - требуется настройка в Vercel Dashboard
+**Commit:** 31f57d7
+**Date:** October 31, 2025
+**Duration:** 30 minutes
+
+**Проблема Google Search Console:**
+```
+Страница не проиндексирована: Страница является копией.
+Канонические версии страницы, выбранные Google и пользователем, не совпадают.
+
+Каноническая страница, выбранная пользователем: https://www.omniaconstructionmn.com/
+Каноническая страница, выбранная Google: https://omniaconstructionmn.com/
+```
+
+**Root Cause:**
+- Vercel автоматически создает редирект non-www → www
+- НО это **307 Temporary Redirect**, а не **301 Permanent**
+- Google не считает 307 окончательным выбором
+- Поэтому Google игнорирует редирект и выбирает non-www как каноническую версию
+
+**Что было сделано:**
+
+1. ✅ Проверка canonical тегов - все правильно указывают на www
+2. ✅ Добавлено правило `redirects` в vercel.json с `permanent: true`
+3. ✅ Обновлен sitemap.xml (lastmod: 2025-10-31)
+4. ❌ Vercel все равно отдает 307 (автоматический редирект перекрывает наше правило)
+
+**Решение (требуется ручная настройка):**
+
+Нужно настроить **Primary Domain** в Vercel Dashboard:
+
+1. Откройте Vercel Dashboard: https://vercel.com/mrave72s-projects/omnia-construction-platform/settings/domains
+2. Найдите домен `omniaconstructionmn.com` (non-www)
+3. Нажмите на три точки (⋮) справа
+4. Выберите "Edit" или "Redirect to Primary Domain"
+5. Установите `www.omniaconstructionmn.com` как Primary Domain
+6. Сохраните изменения
+
+**Альтернативное решение:**
+Если опция "Primary Domain" недоступна:
+1. Убедитесь что оба домена добавлены в проект (www и non-www)
+2. В настройках www-домена нажмите "Make Primary" или "Set as Primary"
+
+**Файлы изменены:**
+- `vercel.json` - добавлен раздел redirects (на случай если Vercel исправит поведение)
+- `front-site-alex/public/sitemap.xml` - обновлена дата lastmod
+
+**Ожидаемый результат после настройки:**
+- ✅ `https://omniaconstructionmn.com/` → HTTP 301 → `https://www.omniaconstructionmn.com/`
+- ✅ Google признает www как каноническую версию
+- ✅ Ошибка "Canonical mismatch" исчезнет в течение 1-2 недель
+- ✅ Все страницы проиндексируются корректно
+
+**Проверка после настройки:**
+```bash
+curl -I https://omniaconstructionmn.com/
+# Должно быть: HTTP/1.1 301 Moved Permanently
+# Location: https://www.omniaconstructionmn.com/
+```
+
+**Важно:** Это стандартная практика для Vercel - 301 редиректы настраиваются через Dashboard, а не через vercel.json.
+
+---
+
 ## October 31, 2025 - Phone Validation Removed from Contact Form ✅
 
 ### Complete Phone Validation Removal
