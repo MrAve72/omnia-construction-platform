@@ -8,6 +8,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactForm from "@/components/ContactForm";
 import PricingSection from "@/components/PricingSection";
 import MinnesotaContentSection from "@/components/MinnesotaContentSection";
+import TrustBar from "@/components/TrustBar";
 import { PhoneOff, Calendar, Camera, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -50,6 +51,7 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <TrustBar />
 
         {/* Minnesota-focused SEO content - 1000+ words */}
         <MinnesotaContentSection />
@@ -130,8 +132,8 @@ const Index = () => {
         
         <ServicesSection />
         <GallerySection />
-        <PricingSection />
         <TestimonialsSection />
+        <PricingSection />
         <ContactForm />
       </main>
       <Footer />

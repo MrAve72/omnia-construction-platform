@@ -30,10 +30,10 @@ const Hero = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-white mb-6 animate-fade-in">
-            Transform Your Space with Exceptional Craftsmanship
+            Tired of Contractors Who Don't Show Up? We're Different.
           </h1>
           <p className="text-white/90 text-lg md:text-xl mb-8 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            We specialize in creating elegant, functional spaces with meticulous attention to detail and superior quality materials.
+            Minneapolis homeowners trust us for kitchen & bathroom remodels. Book online in 2 minutes. Response within 24 hours. No pressure, no runaround.
           </p>
           
           {/* No Phone Call Required Banner */}
@@ -46,7 +46,7 @@ const Hero = () => {
           
           <div className="flex justify-center items-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <Button asChild size="lg" className="rounded-full px-8 py-6 bg-white text-foreground hover:bg-white/90">
-              <Link to="/booking">Book a Consultation</Link>
+              <Link to="/booking">Get Your Free Estimate Online</Link>
             </Button>
           </div>
 
